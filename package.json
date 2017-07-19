@@ -1,0 +1,38 @@
+{
+    "name": "testing_system",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Molchanov96@yandex.ru",
+    "license": "ISC",
+    "devDependencies": {
+        "browser-sync": "^2.18.6",
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^3.1.1",
+        "gulp-clean": "^0.3.2",
+        "gulp-clean-css": "^2.3.2",
+        "gulp-if": "^2.0.2",
+        "gulp-imagemin": "^3.1.1",
+        "gulp-rigger": "^0.5.8",
+        "gulp-sass": "^3.1.0",
+        "gulp-uglify": "^2.0.0",
+        "gulp-useref": "^3.1.2",
+        "gulp-watch": "^4.3.11",
+        "imagemin-pngquant": "^5.0.0"
+    },
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "cookie-parser": "^1.4.3",
+        "cookie-session": "^2.0.0-beta.2",
+        "express": "^4.15.3",
+        "express-handlebars": "^3.0.0",
+        "handlebars": "^4.0.10",
+        "mongoose": "^4.11.1",
+        "normalize.css": "^7.0.0",
+        "passport": "^0.3.2",
+        "passport-local": "^1.0.0",
+        "password-hash": "^1.2.2"
+    }
+}

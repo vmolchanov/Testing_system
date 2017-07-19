@@ -1,0 +1,19 @@
+.hero {
+
+    height: 400px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    &__wrap {
+        @include container($container-1280);
+    }
+
+    &__content {
+        text-align: center;
+    }
+
+    &__form {
+        margin-top: 30px;
+    }
+
+}

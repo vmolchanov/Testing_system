@@ -1,0 +1,30 @@
+.main-header {
+
+    height: 60px;
+
+    background-color: #3f3f3f;
+
+    &__wrap {
+        @include container($container-1280);
+
+        height: 100%;
+    }
+
+    &__content {
+        height: 100%;
+
+        text-align: justify;
+        text-align-last: justify;
+        user-select: none;
+    }
+
+    &__logo,
+    &__menu,
+    &__user {
+        display: inline-block;
+        height: 100%;
+
+        vertical-align: top;
+    }
+
+}

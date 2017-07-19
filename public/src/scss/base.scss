@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Helvetica", "Roboto", "Arial", sans-serif;
+    font-size: 16px;
+}
+
+body {
+    min-width: $container-1280;
+
+    background-color: #dcdcdc;
+}

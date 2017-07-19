@@ -1,0 +1,15 @@
+@mixin container($container-width) {
+    width: $container-width;
+    margin-left: auto;
+    margin-right: auto;
+
+    @if $container-width == $container-1280 {
+        padding: 0 20px;
+    }
+}
+
+@mixin clearfix() {
+    content: "";
+    display: table;
+    clear: both;
+}

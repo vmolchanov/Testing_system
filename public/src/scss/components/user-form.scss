@@ -1,0 +1,24 @@
+.user-form {
+
+    width: 80px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__signin-button {
+        padding: 0;
+
+        line-height: 60px;
+        color: white;
+
+        border: none;
+        background: none;
+
+        &:hover {
+            color: darken(white, 15%);
+
+            cursor: pointer;
+        }
+    }
+
+}
