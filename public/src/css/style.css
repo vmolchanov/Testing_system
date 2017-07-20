@@ -4,20 +4,74 @@
 html {
   font-family: "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 16px; }
+  @media (max-width: 767px) {
+    html {
+      font-size: 14px; } }
 
 body {
   min-width: 1280px;
   background-color: #dcdcdc; }
+  @media (max-width: 1279px) {
+    body {
+      min-width: 960px; } }
+  @media (max-width: 959px) {
+    body {
+      min-width: 768px; } }
+  @media (max-width: 767px) {
+    body {
+      min-width: 480px; } }
+  @media (max-width: 479px) {
+    body {
+      min-width: 320px; } }
+
+.hamburger {
+  display: none;
+  width: 60px;
+  height: 100%;
+  padding: 10px;
+  vertical-align: top; }
+  @media (max-width: 767px) {
+    .hamburger {
+      display: inline-block; } }
+  .hamburger img {
+    width: 40px;
+    height: 40px; }
 
 .hero {
-  height: 400px;
   padding-top: 100px;
   padding-bottom: 100px; }
+  @media (max-width: 479px) {
+    .hero {
+      width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 50px;
+      padding-bottom: 50px; } }
   .hero__wrap {
     width: 1280px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px; }
+    @media (max-width: 1279px) {
+      .hero__wrap {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 959px) {
+      .hero__wrap {
+        width: 768px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 767px) {
+      .hero__wrap {
+        width: 480px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 479px) {
+      .hero__wrap {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto; } }
   .hero__content {
     text-align: center; }
   .hero__form {
@@ -33,6 +87,7 @@ body {
     height: 40px; }
 
 .main-header {
+  position: relative;
   height: 60px;
   background-color: #3f3f3f; }
   .main-header__wrap {
@@ -41,14 +96,37 @@ body {
     margin-right: auto;
     padding: 0 20px;
     height: 100%; }
+    @media (max-width: 1279px) {
+      .main-header__wrap {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 959px) {
+      .main-header__wrap {
+        width: 768px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 767px) {
+      .main-header__wrap {
+        width: 480px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 479px) {
+      .main-header__wrap {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto; } }
   .main-header__content {
     height: 100%;
     text-align: justify;
-    text-align-last: justify;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none; }
+  .main-header__content::after {
+    display: inline-block;
+    width: 100%;
+    content: ""; }
   .main-header__logo, .main-header__menu, .main-header__user {
     display: inline-block;
     height: 100%;
@@ -57,6 +135,17 @@ body {
 .main-menu {
   width: 400px;
   height: 100%; }
+  @media (max-width: 767px) {
+    .main-menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 60px;
+      display: none;
+      width: auto;
+      height: auto;
+      text-align: center;
+      background-color: #3f3f3f; } }
   .main-menu__list {
     height: 100%;
     padding: 0;
@@ -75,12 +164,21 @@ body {
       color: white; }
       .main-menu__item a:hover {
         color: #d9d9d9; }
+    @media (max-width: 767px) {
+      .main-menu__item {
+        display: block; } }
+  .main-menu--show {
+    display: block; }
 
 .request-for-the-use-form {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 0; }
+  font-size: 0;
+  text-align: center; }
+  @media (max-width: 767px) {
+    .request-for-the-use-form {
+      width: auto; } }
   .request-for-the-use-form__email {
     display: inline-block; }
     .request-for-the-use-form__email input {
@@ -92,12 +190,16 @@ body {
       font-size: 1rem; }
   .request-for-the-use-form__submit-btn {
     display: inline-block;
+    margin-left: 20px;
     font-size: 1rem; }
+    @media (max-width: 767px) {
+      .request-for-the-use-form__submit-btn {
+        margin-left: 0;
+        margin-top: 25px; } }
     .request-for-the-use-form__submit-btn input {
       display: block;
       width: 200px;
       height: 45px;
-      margin-left: 20px;
       font-weight: bold;
       font-size: 1rem;
       border: none;
@@ -111,14 +213,19 @@ body {
   width: 150px;
   height: 100%;
   text-align: center; }
+  @media (max-width: 767px) {
+    .user-block {
+      display: none; } }
 
 .user-form {
   width: 80px;
   height: 100%;
-  margin-left: auto;
-  margin-right: auto; }
+  margin-left: auto; }
   .user-form__signin-button {
+    display: block;
     padding: 0;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 60px;
     color: white;
     border: none;

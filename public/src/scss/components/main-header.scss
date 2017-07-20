@@ -1,5 +1,7 @@
 .main-header {
 
+    position: relative;
+
     height: 60px;
 
     background-color: #3f3f3f;
@@ -8,14 +10,36 @@
         @include container($container-1280);
 
         height: 100%;
+
+        @media (max-width: $media-960) {
+            @include container($container-960);
+        }
+
+        @media (max-width: $media-768) {
+            @include container($container-768);
+        }
+
+        @media (max-width: $media-480) {
+            @include container($container-480);
+        }
+
+        @media (max-width: $media-320) {
+            @include container($container-320);
+        }
     }
 
     &__content {
         height: 100%;
 
         text-align: justify;
-        text-align-last: justify;
         user-select: none;
+    }
+
+    &__content::after {
+        display: inline-block;
+        width: 100%;
+
+        content: "";
     }
 
     &__logo,

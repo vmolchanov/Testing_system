@@ -5,10 +5,31 @@
 html {
     font-family: "Helvetica", "Roboto", "Arial", sans-serif;
     font-size: 16px;
+
+    @media (max-width: $media-480) {
+        font-size: 14px;
+    }
+
 }
 
 body {
     min-width: $container-1280;
 
     background-color: #dcdcdc;
+    
+    @media (max-width: $media-960) {
+        min-width: $container-960;
+    }
+
+    @media (max-width: $media-768) {
+        min-width: $container-768;
+    }
+
+    @media (max-width: $media-480) {
+        min-width: $container-480;
+    }
+
+    @media (max-width: $media-320) {
+        min-width: $container-320;
+    }
 }

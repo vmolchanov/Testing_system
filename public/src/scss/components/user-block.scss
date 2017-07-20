@@ -5,4 +5,8 @@
 
     text-align: center;
 
+    @media (max-width: $media-480) {
+        display: none;
+    }
+
 }

@@ -3,6 +3,21 @@
     width: 400px;
     height: 100%;
 
+    @media (max-width: $media-480) {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px;
+
+        display: none;
+        width: auto;
+        height: auto;
+
+        text-align: center;
+
+        background-color: #3f3f3f;
+    }
+
     &__list {
         height: 100%;
         padding: 0;
@@ -29,6 +44,14 @@
                 color: darken(white, 15%);
             }
         }
+
+        @media (max-width: $media-480) {
+            display: block;
+        }
+    }
+
+    &--show {
+        display: block;
     }
 
 }
