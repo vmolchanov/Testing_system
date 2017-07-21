@@ -9,7 +9,10 @@ html {
       font-size: 14px; } }
 
 body {
+  position: relative;
   min-width: 1280px;
+  min-height: 100vh;
+  padding-bottom: 60px;
   background-color: #dcdcdc; }
   @media (max-width: 1279px) {
     body {
@@ -85,6 +88,40 @@ body {
   .logo-block img {
     width: 40px;
     height: 40px; }
+
+.main-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #3f3f3f; }
+  .main-footer__wrap {
+    height: 100%;
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px; }
+    @media (max-width: 1279px) {
+      .main-footer__wrap {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 959px) {
+      .main-footer__wrap {
+        width: 768px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 767px) {
+      .main-footer__wrap {
+        width: 480px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 479px) {
+      .main-footer__wrap {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto; } }
 
 .main-header {
   position: relative;
@@ -209,27 +246,57 @@ body {
         background-color: #ededed;
         cursor: pointer; }
 
+.social {
+  width: 400px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0;
+  text-align: justify; }
+  @media (max-width: 767px) {
+    .social {
+      width: 300px; } }
+  @media (max-width: 479px) {
+    .social {
+      width: 250px; } }
+  .social::after {
+    display: inline-block;
+    width: 100%;
+    content: ""; }
+  .social__item {
+    display: inline-block;
+    height: 100%;
+    line-height: 60px; }
+    .social__item a {
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #ccc; }
+      .social__item a:hover {
+        color: white; }
+
 .user-block {
   width: 150px;
   height: 100%;
   text-align: center; }
   @media (max-width: 767px) {
     .user-block {
-      display: none; } }
-
-.user-form {
-  width: 80px;
-  height: 100%;
-  margin-left: auto; }
-  .user-form__signin-button {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      width: 100px;
+      margin-left: auto;
+      margin-right: auto; } }
+  .user-block__signin-btn {
     display: block;
     padding: 0;
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none;
     line-height: 60px;
     color: white;
     border: none;
     background: none; }
-    .user-form__signin-button:hover {
+    .user-block__signin-btn:hover {
       color: #d9d9d9;
       cursor: pointer; }

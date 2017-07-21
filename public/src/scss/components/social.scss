@@ -1,0 +1,42 @@
+.social {
+
+    width: 400px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 0;
+    text-align: justify;
+
+    @media (max-width: $media-480) {
+        width: 300px;
+    }
+
+    @media (max-width: $media-320) {
+        width: 250px;
+    }
+
+    &::after {
+        display: inline-block;
+        width: 100%;
+        content: "";
+    }
+
+    &__item {
+        display: inline-block;
+        height: 100%;
+
+        line-height: 60px;
+
+        a {
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #ccc;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+}

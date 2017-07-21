@@ -6,7 +6,35 @@
     text-align: center;
 
     @media (max-width: $media-480) {
-        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+
+        //display: none;
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__signin-btn {
+        display: block;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+        text-decoration: none;
+        line-height: 60px;
+        color: white;
+
+        border: none;
+        background: none;
+
+        &:hover {
+            color: darken(white, 15%);
+
+            cursor: pointer;
+        }
     }
 
 }
