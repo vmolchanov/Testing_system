@@ -17,7 +17,7 @@ body {
 
     min-width: $container-1280;
     min-height: 100vh;
-    padding-bottom: 60px;
+    padding-bottom: 106px;
 
     background-color: #dcdcdc;
     
@@ -36,4 +36,8 @@ body {
     @media (max-width: $media-320) {
         min-width: $container-320;
     }
+}
+
+body.no-scroll {
+    overflow-y: hidden;
 }

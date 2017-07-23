@@ -12,7 +12,7 @@ body {
   position: relative;
   min-width: 1280px;
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 106px;
   background-color: #dcdcdc; }
   @media (max-width: 1279px) {
     body {
@@ -26,6 +26,9 @@ body {
   @media (max-width: 479px) {
     body {
       min-width: 320px; } }
+
+body.no-scroll {
+  overflow-y: hidden; }
 
 .author {
   text-align: center;
@@ -249,6 +252,106 @@ body {
       .request-for-the-use-form__submit-btn input:hover {
         background-color: #ededed;
         cursor: pointer; }
+
+.signin-popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none; }
+  .signin-popup__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10; }
+  .signin-popup__wrap {
+    position: relative;
+    width: 400px;
+    padding: 40px;
+    margin: 20px auto;
+    background-color: #dcdcdc;
+    z-index: 100; }
+    @media (max-width: 767px) {
+      .signin-popup__wrap {
+        width: 320px; } }
+  .signin-popup__header {
+    margin: 0;
+    margin-bottom: 20px; }
+  .signin-popup__close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden; }
+    .signin-popup__close::before {
+      position: absolute;
+      top: 9px;
+      left: -5px;
+      display: block;
+      width: 30px;
+      height: 2px;
+      background-color: black;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      content: ""; }
+    .signin-popup__close::after {
+      position: absolute;
+      top: 9px;
+      left: -5px;
+      display: block;
+      width: 30px;
+      height: 2px;
+      background-color: black;
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      content: ""; }
+    .signin-popup__close:hover {
+      cursor: pointer; }
+  .signin-popup--show {
+    display: block; }
+
+.signin-popup-form__email input {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px; }
+
+.signin-popup-form__password {
+  margin-top: 10px; }
+  .signin-popup-form__password input {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px; }
+
+.signin-popup-form__submit {
+  margin-top: 20px;
+  font-size: 0;
+  text-align: justify; }
+  .signin-popup-form__submit input {
+    width: 100px;
+    height: 35px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #f5f5f5; }
+    .signin-popup-form__submit input:hover {
+      background-color: #ededed;
+      cursor: pointer; }
+  .signin-popup-form__submit a {
+    display: inline-block;
+    font-size: 1rem;
+    text-decoration: none;
+    color: black; }
+    .signin-popup-form__submit a:hover {
+      text-decoration: underline; }
+  .signin-popup-form__submit::after {
+    display: inline-block;
+    width: 100%;
+    content: ""; }
 
 .social {
   width: 400px;

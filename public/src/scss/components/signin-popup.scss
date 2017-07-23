@@ -1,0 +1,95 @@
+.signin-popup {
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: none;
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        background-color: rgba(0, 0, 0, 0.5);
+
+        z-index: 10;
+    }
+
+    &__wrap {
+        position: relative;
+
+        width: 400px;
+        padding: 40px;
+        margin: 20px auto;
+
+        background-color: #dcdcdc;
+
+        z-index: 100;
+
+        @media (max-width: $media-480) {
+            width: 320px;
+        }
+    }
+
+    &__header {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    &__close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        width: 20px;
+        height: 20px;
+
+        overflow: hidden;
+
+        // косая черта
+        &::before {
+            position: absolute;
+            top: 9px;
+            left: -5px;
+
+            display: block;
+            width: 30px;
+            height: 2px;
+
+            background-color: black;
+            transform: rotate(45deg);
+
+            content: "";
+        }
+
+        // косая черта
+        &::after {
+            position: absolute;
+            top: 9px;
+            left: -5px;
+
+            display: block;
+            width: 30px;
+            height: 2px;
+
+            background-color: black;
+            transform: rotate(-45deg);
+
+            content: "";
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &--show {
+        display: block;
+    }
+
+}
