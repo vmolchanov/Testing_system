@@ -1,0 +1,106 @@
+.available-tests {
+
+    &__wrap {
+        @include container($container-1280);
+
+        @media (max-width: $media-960) {
+            @include container($container-960);
+        }
+
+        @media (max-width: $media-768) {
+            @include container($container-768);
+        }
+
+        @media (max-width: $media-480) {
+            @include container($container-480);
+        }
+
+        @media (max-width: $media-320) {
+            @include container($container-320);
+        }
+    }
+
+    &__list {
+        padding: 0;
+
+        font-size: 0;
+
+        list-style: none;
+    }
+
+    &__test {
+        display: inline-block;
+        width: 232px;
+        height: 300px;
+        margin-bottom: 20px;
+
+        font-size: 1rem;
+        text-align: center;
+        line-height: 150px;
+
+        border: 1px dotted #333;
+        border-radius: 5px;
+
+        a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+
+            text-decoration: none;
+            color: black;
+        }
+
+        &:not(:nth-child(5n)) {
+            margin-right: 20px;
+        }
+
+        &:hover {
+            box-shadow: 0 0 1px 0 black;
+            transform: scale(1.1);
+            // TODO добавить анимацию плавного увеличения
+        }
+
+        @media (max-width: $media-960) {
+            width: 168px;
+            height: 220px;
+        }
+
+        @media (max-width: $media-768) {
+            width: 167px;
+            height: 220px;
+
+            &:not(:nth-child(5n)) {
+                margin-right: 0;
+            }
+
+            &:not(:nth-child(4n)) {
+                margin-right: 20px;
+            }
+        }
+
+        @media (max-width: $media-480) {
+            width: 130px;
+            height: 200px;
+
+            &:not(:nth-child(4n)) {
+                margin-right: 0;
+            }
+
+            &:not(:nth-child(3n)) {
+                margin-right: 25px;
+            }
+        }
+
+        @media (max-width: $media-320) {
+            &:not(:nth-child(3n)) {
+                margin-right: 0;
+            }
+
+            &:not(:nth-child(2n)) {
+                margin-right: 20px;
+            }
+        }
+    }
+
+}

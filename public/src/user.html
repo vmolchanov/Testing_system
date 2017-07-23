@@ -39,7 +39,7 @@
                 </div>
                 <div class="main-header__user">
                     <div class="user-block">
-                        <a class="user-block__signin-btn" href="#">Войти</a>
+                        <a class="user-block__signin-btn" href="/logout">Выйти</a>
                     </div>
                 </div>
                 <div class="hamburger">
@@ -49,25 +49,32 @@
         </div>
     </header>
 
-    <div class="hero">
-        <div class="hero__wrap">
-            <div class="hero__content">
-                <h1>TestUp – современная система тестирования</h1>
-                <p>
-                    Вы перешли на сайт системы тестирования TestUp.
-                    Для ее использования необходимо оставить заявку.
-                </p>
-            </div>
-            <div class="hero__form">
-                <form action="" method="GET" id="request-for-the-use-form" class="request-for-the-use-form">
-                    <div class="request-for-the-use-form__email">
-                        <input type="email" name="email" placeholder="Email">
-                    </div>
-                    <div class="request-for-the-use-form__submit-btn">
-                        <input type="submit" value="Отправить заявку">
-                    </div>
-                </form>
-            </div>
+    <div class="available-tests">
+        <div class="available-tests__wrap">
+            <h2 class="available-tests__header">Доступные тесты</h2>
+            <ul class="available-tests__list">
+                <li class="available-tests__test">
+                    <a href="#">Марго</a>
+                </li>
+                <li class="available-tests__test">
+                    <a href="#">Хуюров</a>
+                </li>
+                <li class="available-tests__test">
+                    <a href="#">Сраков</a>
+                </li>
+                <li class="available-tests__test">
+                    <a href="#">Хуилов</a>
+                </li>
+                <li class="available-tests__test">
+                    <a href="#">Волына</a>
+                </li>
+                <li class="available-tests__test">
+                    <a href="#">Кекабаевич</a>
+                </li>
+                <li class="available-tests__test">
+                    <a href="#">Отсосеев</a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -104,27 +111,6 @@
         </div>
     </footer>
 
-    <div id="signin-popup" class="signin-popup">
-        <div class="signin-popup__overlay"></div>
-        <div class="signin-popup__wrap">
-            <h2 class="signin-popup__header">Войти</h2>
-            <div class="signin-popup__close"></div>
-            <form action="#" method="post" class="signin-popup-form">
-                <div class="signin-popup-form__email">
-                    <input type="email" name="email" placeholder="Email">
-                </div>
-                <div class="signin-popup-form__password">
-                    <input type="password" name="password" placeholder="Пароль">
-                </div>
-                <div class="signin-popup-form__submit">
-                    <input type="submit" value="Войти">
-                    <a href="#">Забыли пароль?</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <script src="js/common.js"></script>
-    <script src="js/index.js"></script>
 </body>
 </html>
