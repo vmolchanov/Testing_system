@@ -27,6 +27,10 @@ body {
     body {
       min-width: 320px; } }
 
+.author {
+  text-align: center;
+  color: white; }
+
 .hamburger {
   display: none;
   width: 60px;
@@ -94,7 +98,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  padding-top: 20px;
   background-color: #3f3f3f; }
   .main-footer__wrap {
     height: 100%;
