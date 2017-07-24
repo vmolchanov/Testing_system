@@ -72,16 +72,24 @@ body.no-scroll {
   margin-bottom: 20px;
   font-size: 1rem;
   text-align: center;
-  line-height: 150px;
   border: 1px dotted #333;
-  border-radius: 5px; }
-  .available-tests__test a {
-    display: inline-block;
+  border-radius: 5px;
+  overflow: scroll; }
+  .available-tests__test > div {
+    display: table;
     width: 100%;
-    height: 100%;
+    height: 100%; }
+  .available-tests__test a {
+    display: table-cell;
+    width: 100%;
+    max-width: 232px;
+    max-height: 300px;
     padding: 10px;
     text-decoration: none;
-    color: black; }
+    text-overflow: ellipsis;
+    color: black;
+    vertical-align: middle;
+    word-wrap: break-word; }
   .available-tests__test:not(:nth-child(5n)) {
     margin-right: 20px; }
   .available-tests__test:hover {
@@ -91,11 +99,17 @@ body.no-scroll {
   @media (max-width: 1279px) {
     .available-tests__test {
       width: 168px;
-      height: 220px; } }
+      height: 220px; }
+      .available-tests__test > div a {
+        max-width: 168px;
+        max-height: 220px; } }
   @media (max-width: 959px) {
     .available-tests__test {
       width: 167px;
       height: 220px; }
+      .available-tests__test > div a {
+        max-width: 167px;
+        max-height: 220px; }
       .available-tests__test:not(:nth-child(5n)) {
         margin-right: 0; }
       .available-tests__test:not(:nth-child(4n)) {
@@ -104,6 +118,9 @@ body.no-scroll {
     .available-tests__test {
       width: 130px;
       height: 200px; }
+      .available-tests__test > div a {
+        max-width: 130px;
+        max-height: 200px; }
       .available-tests__test:not(:nth-child(4n)) {
         margin-right: 0; }
       .available-tests__test:not(:nth-child(3n)) {

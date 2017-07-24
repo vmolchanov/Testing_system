@@ -1,0 +1,1 @@
+"use strict";!function(){var e=document.querySelector(".hamburger"),t=document.querySelector(".main-menu");e.addEventListener("click",function(e){e.preventDefault(),t.classList.toggle("main-menu--show")})}();

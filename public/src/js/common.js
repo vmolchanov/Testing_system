@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
 
     var hamburger = document.querySelector(".hamburger");

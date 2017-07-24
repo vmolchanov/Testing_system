@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
 
     var openSigninPopupBtn = document.querySelector(".user-block__signin-btn");

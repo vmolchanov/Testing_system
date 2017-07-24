@@ -39,7 +39,7 @@ var path = {
         src: "./public/src",
         html: "./public/src/*.html",
         scss: "./public/src/scss/style.scss",
-        css: "./public/src/css",
+        css: "./public/src/css/**/*.css",
         js: "./public/src/js/*.js",
         fonts: "./public/src/fonts/**/*.*",
         images: "./public/src/img/**/*.*"
@@ -129,12 +129,22 @@ gulp.task("clean", function() {
 // build
 gulp.task("build", function() {
     return gulp.src(path.src.html)
-        // .pipe(useref())
-        .pipe(gulpif("js/**/*.js", uglify()))
-        .pipe(gulpif("css/**/*.css", cleanCSS()))
         .pipe(gulp.dest(path.build.html));
 });
 
-gulp.task("full-build", ["clean", "build", "images", "fonts"]);
+gulp.task("build-css", function () {
+    return gulp.src(path.src.css)
+        // .pipe(gulpif("js/**/*.js", uglify()))
+        .pipe(cleanCSS())
+        .pipe(gulp.dest(path.build.styles));
+});
+
+gulp.task("build-js", function () {
+    return gulp.src(path.src.js)
+        .pipe(uglify())
+        .pipe(gulp.dest(path.build.js));
+});
+
+gulp.task("full-build", ["clean", "build", "build-css", "build-js", "images", "fonts"]);
 
 gulp.task("default", ["connect", "watch"]);
