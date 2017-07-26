@@ -5,8 +5,6 @@ var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
 var cleanCSS = require("gulp-clean-css");
 var uglify = require("gulp-uglify");
-// var useref = require("gulp-useref");
-var gulpif = require("gulp-if");
 var watch = require("gulp-watch");
 var rigger = require("gulp-rigger");
 var browserSync = require("browser-sync");
@@ -134,7 +132,6 @@ gulp.task("build", function() {
 
 gulp.task("build-css", function () {
     return gulp.src(path.src.css)
-        // .pipe(gulpif("js/**/*.js", uglify()))
         .pipe(cleanCSS())
         .pipe(gulp.dest(path.build.styles));
 });

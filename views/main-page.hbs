@@ -1,0 +1,43 @@
+<div class="hero">
+    <div class="hero__wrap">
+        <div class="hero__content">
+            <h1>TestUp – современная система тестирования</h1>
+            <p>
+                Вы перешли на сайт системы тестирования TestUp.
+                Для ее использования необходимо оставить заявку.
+            </p>
+        </div>
+        <div class="hero__form">
+            <form action="" method="GET" id="request-for-the-use-form" class="request-for-the-use-form">
+                <div class="request-for-the-use-form__email">
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="request-for-the-use-form__submit-btn">
+                    <input type="submit" value="Отправить заявку">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="signin-popup" class="signin-popup">
+    <div class="signin-popup__overlay"></div>
+    <div class="signin-popup__wrap">
+        <h2 class="signin-popup__header">Войти</h2>
+        <div class="signin-popup__close"></div>
+        <form action="/signin" method="post" class="signin-popup-form">
+            <div class="signin-popup-form__email">
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <div class="signin-popup-form__password">
+                <input type="password" name="password" placeholder="Пароль">
+            </div>
+            <div class="signin-popup-form__submit">
+                <input type="submit" value="Войти">
+                <a href="#">Забыли пароль?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="js/index.js"></script>
