@@ -1,1 +1,37 @@
-"use strict";!function(){function e(e){e.preventDefault(),t.classList.remove("signin-popup--show"),document.body.classList.remove("no-scroll")}var n=document.querySelector(".user-block__signin-btn"),t=document.getElementById("signin-popup"),o=t.querySelector(".signin-popup__close"),s=document.querySelector(".signin-popup__overlay"),i=document.querySelector(".signin-popup-form");n.addEventListener("click",function(e){e.preventDefault(),t.classList.add("signin-popup--show"),document.body.classList.add("no-scroll")}),o.addEventListener("click",e),s.addEventListener("click",e),i.addEventListener("submit",function(e){e.preventDefault(),console.log("here");var n=this.querySelector("input[type=email]").value,t=this.querySelector("input[type=password]").value,o="email="+encodeURIComponent(n)+"&pass="+encodeURIComponent(t);if(-1!==n.indexOf("@")&&n.indexOf("@")!==n.length-1){var s=new XMLHttpRequest;s.open("POST","/signin"),s.addEventListener("readystatechange",function(e){this.readyState===XMLHttpRequest.DONE&&console.log(this.status)}),s.send(o)}})}();
+"use strict";
+
+(function () {
+
+    var openSignInPopupBtn = document.querySelector(".user-block__signin-btn");
+    var signInPopup = document.getElementById("signin-popup");
+    var closeSignInPopupBtn = signInPopup.querySelector(".signin-popup__close");
+    var overlay = document.querySelector(".signin-popup__overlay");
+    var registerForm = document.getElementById("register-form");
+
+    registerForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var form = new RegisterForm();
+        form.submit();
+    });
+
+    openSignInPopupBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        signInPopup.classList.add("signin-popup--show");
+        document.body.classList.add("no-scroll");
+    });
+
+    closeSignInPopupBtn.addEventListener("click", closeSigninPopup);
+
+    overlay.addEventListener("click", closeSigninPopup);
+
+
+    /**
+     * @param event
+     */
+    function closeSigninPopup(event) {
+        event.preventDefault();
+        signInPopup.classList.remove("signin-popup--show");
+        document.body.classList.remove("no-scroll");
+    }
+
+})();

@@ -1,6 +1,14 @@
 {
     "port": 8080,
     "mongoose": {
-        "uri": "mongodb://localhost/testup"
+        "url": "mongodb://localhost/testup"
+    },
+    "email": {
+        "service": "Yandex",
+        "address": "test-up2017@yandex.ru",
+        "auth": {
+            "user": "test-up2017",
+            "pass": "qwerty123456"
+        }
     }
 }

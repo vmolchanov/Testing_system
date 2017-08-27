@@ -138,7 +138,7 @@ gulp.task("build-css", function () {
 
 gulp.task("build-js", function () {
     return gulp.src(path.src.js)
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest(path.build.js));
 });
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+
+            background-color: #dcdcdc;
+        }
+
+        .container {
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        ul.account-list {
+            list-style: none;
+        }
+
+        li.account-item {
+            margin-bottom: 5px;
+        }
+
+        li.account-item span.value {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Здравствуйте! Регистрация на сайте TestUp прошла успешно.</p>
+        <ul class="account-list">
+            <li class="account-item">
+                <span class="key">Email:</span>
+                <span class="value">{{email}}</span>
+            </li>
+            <li class="account-item">
+                <span class="key">Пароль:</span>
+                <span class="value">{{pass}}</span>
+            </li>
+        </ul>
+        <p>Приятного использования!</p>
+    </div>
+</body>
+</html>

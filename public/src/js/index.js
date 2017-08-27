@@ -21,17 +21,15 @@
     signInForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        console.log("here");
-
         var email = this.querySelector("input[type=email]").value;
         var password = this.querySelector("input[type=password]").value;
 
-        var queryString = "email=" + encodeURIComponent(email) + "&pass=" + encodeURIComponent(password);
+        var queryString = "username=" + encodeURIComponent(email) + "&pass=" + encodeURIComponent(password);
 
         if (email.indexOf("@") !== -1 && email.indexOf("@") !== email.length - 1) {
             var xhr = new XMLHttpRequest();
 
-            xhr.open("POST", "/signin");
+            xhr.open("POST", "/login");
             xhr.addEventListener("readystatechange", function (event) {
                 if (this.readyState === XMLHttpRequest.DONE) {
                     console.log(this.status);

@@ -8,11 +8,11 @@
             </p>
         </div>
         <div class="hero__form">
-            <form action="" method="GET" id="request-for-the-use-form" class="request-for-the-use-form">
-                <div class="request-for-the-use-form__email">
+            <form action="" method="POST" id="register-form" class="register-form">
+                <div class="register-form__email">
                     <input type="email" name="email" placeholder="Email">
                 </div>
-                <div class="request-for-the-use-form__submit-btn">
+                <div class="register-form__submit-btn">
                     <input type="submit" value="Отправить заявку">
                 </div>
             </form>
@@ -25,7 +25,7 @@
     <div class="signin-popup__wrap">
         <h2 class="signin-popup__header">Войти</h2>
         <div class="signin-popup__close"></div>
-        <form action="/signin" method="post" class="signin-popup-form">
+        <form action="/login" method="POST" class="signin-popup-form">
             <div class="signin-popup-form__email">
                 <input type="email" name="email" placeholder="Email">
             </div>
@@ -40,4 +40,5 @@
     </div>
 </div>
 
+<script src="js/registerForm.js"></script>
 <script src="js/index.js"></script>

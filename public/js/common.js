@@ -1,1 +1,13 @@
-"use strict";!function(){var e=document.querySelector(".hamburger"),t=document.querySelector(".main-menu");e.addEventListener("click",function(e){e.preventDefault(),t.classList.toggle("main-menu--show")})}();
+"use strict";
+
+(function () {
+
+    var hamburger = document.querySelector(".hamburger");
+    var menu = document.querySelector(".main-menu");
+
+    hamburger.addEventListener("click", function (event) {
+        event.preventDefault();
+        menu.classList.toggle("main-menu--show")
+    });
+
+})();

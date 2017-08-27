@@ -1,92 +1,53 @@
 const config = require("./config/config");
-
 const express = require("express");
-const app = express();
-
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const session = require("cookie-session");
+const exphbs = require("express-handlebars");
+const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const handlebars = require("express-handlebars").create({ defaultLayout: "./views/layouts/index", extname: ".hbs" });
-const passwordHash = require("password-hash");
+const mongo = require("mongodb");
+const mongoose = require("mongoose");
+mongoose.connect(config.mongoose.url);
+const db = mongoose.connection;
 
-const mainPageController = require("./controllers/mainPageController");
-const userController = require("./controllers/userController");
+const routes = require("./routes/index");
+const users = require("./routes/users");
 
-app.use(express.static("public"));
+// Инициализация приложения
+const app = express();
+
+// Инициализация шаблонизатора
+app.set("views", path.join(__dirname, "views"));
+app.engine("handlebars", exphbs({ defaultLayout: "layout" }));
+app.set("view engine", "handlebars");
+
+// Инициализация Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ keys: ["secret"] }));
+
+// Указание директории со статическими файлами
+app.use(express.static(path.join(__dirname, "public")));
+
+// Express Session
+app.use(session({
+    secret: "secret",
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Инициализация Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.engine("hbs", handlebars.engine);
-app.set("view engine", "hbs");
+app.use("/", routes);
+app.use("/users", users);
 
-passport.use(new LocalStrategy((username, password, done) => {
+// Указание порта
+app.set("port", process.env.PORT || config.port);
 
-    console.log("local strategy");
-
-    UserModel.findOne({ email: username }, (err, person) => {
-        if (err) {
-            console.log(err);
-            return done(err);
-        }
-
-        if (person) {
-            if (passwordHash.verify(password, person.password)) {
-                return done(null, person);
-            } else {
-                return done(null, false, { message: "Неправильный пароль" });
-            }
-        } else {
-            return done(null, false, { message: "Пользователь не найден" });
-        }
-    });
-
-}));
-
-passport.serializeUser((user, done) => {
-    done(null, user._id);
+app.listen(app.get("port"), () => {
+    console.log("Server is listening...\nhttp://localhost:%s", app.get("port"));
 });
-
-passport.deserializeUser((id, done) => {
-    done(null, { id: id });
-});
-
-app.get("/", mainPageController);
-
-app.post("/signin", (req, res, next) => {
-    console.log("in function");
-
-    passport.authenticate("local", function (err, user, info) {
-        console.log("auth");
-
-        if (err) {
-            console.log("err");
-            return next(err);
-        }
-
-        if (!user) {
-            console.log("user");
-            return res.status(401).send("Bad");
-        }
-
-        return res.render("user");
-    })(req, res, next);
-});
-
-const mustBeAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : res.redirect("/");
-
-app.all("/user", mustBeAuthenticated);
-
-app.get("/user", userController);
-
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
-
-app.listen(config.port, () => console.log("Server is listening..."));

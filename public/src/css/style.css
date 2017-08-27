@@ -311,33 +311,33 @@ body.no-scroll {
   .main-menu--show {
     display: block; }
 
-.request-for-the-use-form {
+.register-form {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
   font-size: 0;
   text-align: center; }
   @media (max-width: 767px) {
-    .request-for-the-use-form {
+    .register-form {
       width: auto; } }
-  .request-for-the-use-form__email {
+  .register-form__email {
     display: inline-block; }
-    .request-for-the-use-form__email input {
+    .register-form__email input {
       display: block;
       width: 280px;
       height: 45px;
       padding: 5px;
       margin: 0;
       font-size: 1rem; }
-  .request-for-the-use-form__submit-btn {
+  .register-form__submit-btn {
     display: inline-block;
     margin-left: 20px;
     font-size: 1rem; }
     @media (max-width: 767px) {
-      .request-for-the-use-form__submit-btn {
+      .register-form__submit-btn {
         margin-left: 0;
         margin-top: 25px; } }
-    .request-for-the-use-form__submit-btn input {
+    .register-form__submit-btn input {
       display: block;
       width: 200px;
       height: 45px;
@@ -346,7 +346,7 @@ body.no-scroll {
       border: none;
       border-radius: 5px;
       background-color: #f5f5f5; }
-      .request-for-the-use-form__submit-btn input:hover {
+      .register-form__submit-btn input:hover {
         background-color: #ededed;
         cursor: pointer; }
 
