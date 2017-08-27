@@ -2,10 +2,18 @@
 
 (function () {
 
+    /**
+     * @constructor
+     */
     function RegisterForm() {
         this._emailInput = document.querySelector("#register-form input[name=email]");
     }
 
+
+    /**
+     * Метод используется для валидации формы
+     * @returns {{isValid: boolean}} - объект с признаком результата валидации
+     */
     RegisterForm.prototype.validate = function () {
         var regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var isValidEmail = regexp.test(this._emailInput);
@@ -15,6 +23,10 @@
         return { isValid: false };
     };
 
+
+    /**
+     * Метод выполняет валидацию полей и отправляет ajax-запрос, если валидация пройдена
+     */
     RegisterForm.prototype.submit = function () {
         var isValid = this.validate();
 
@@ -23,6 +35,7 @@
             return;
         }
 
+        /** @type {string} - тело POST запроса */
         var body = "email=" + encodeURIComponent(this._emailInput.value);
         var xhr = new XMLHttpRequest();
         var self = this;

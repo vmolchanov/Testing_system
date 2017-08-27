@@ -39,8 +39,9 @@ module.exports = (req, res) => {
         res.send({ "status": "success" });
 
         fs.readFile("./views/email.handlebars", "utf8", (err, data) => {
-            if (err)
+            if (err) {
                 throw err;
+            }
 
             let template = hbs.compile(data);
             let context = {
@@ -59,7 +60,7 @@ module.exports = (req, res) => {
             let mailOptions = {
                 from: config.email.address,
                 to: req.body.email,
-                subject: "Регистрация на Test Up",
+                subject: "Регистрация на TestUp",
                 html: template(context)
             };
 
@@ -72,6 +73,4 @@ module.exports = (req, res) => {
             });
         });
     });
-
-
 };

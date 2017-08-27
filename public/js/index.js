@@ -2,11 +2,9 @@
 
 (function () {
 
-    var openSignInPopupBtn = document.querySelector(".user-block__signin-btn");
-    var signInPopup = document.getElementById("signin-popup");
-    var closeSignInPopupBtn = signInPopup.querySelector(".signin-popup__close");
-    var overlay = document.querySelector(".signin-popup__overlay");
+    var loginButton = document.querySelector(".user-block__signin-btn");
     var registerForm = document.getElementById("register-form");
+    var signInPopup = new SignInPopup();
 
     registerForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -14,24 +12,9 @@
         form.submit();
     });
 
-    openSignInPopupBtn.addEventListener("click", function (event) {
+    loginButton.addEventListener("click", function (event) {
         event.preventDefault();
-        signInPopup.classList.add("signin-popup--show");
-        document.body.classList.add("no-scroll");
+        signInPopup.open();
     });
-
-    closeSignInPopupBtn.addEventListener("click", closeSigninPopup);
-
-    overlay.addEventListener("click", closeSigninPopup);
-
-
-    /**
-     * @param event
-     */
-    function closeSigninPopup(event) {
-        event.preventDefault();
-        signInPopup.classList.remove("signin-popup--show");
-        document.body.classList.remove("no-scroll");
-    }
 
 })();
