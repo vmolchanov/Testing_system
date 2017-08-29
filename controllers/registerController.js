@@ -1,7 +1,7 @@
 const config = require("../config/config");
 const User = require("../models/user");
 const generator = require("generate-password");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const hbs = require("handlebars");
 const fs = require("fs");
 

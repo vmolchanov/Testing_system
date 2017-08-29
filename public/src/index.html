@@ -109,22 +109,23 @@
         <div class="signin-popup__wrap">
             <h2 class="signin-popup__header">Войти</h2>
             <div class="signin-popup__close"></div>
-            <form action="#" method="post" class="signin-popup-form">
+            <form action="/login" method="POST" class="signin-popup-form">
                 <div class="signin-popup-form__email">
-                    <input type="email" name="email" placeholder="Email">
+                    <input class="signin-popup-form--error" type="email" name="email" placeholder="Email">
                 </div>
                 <div class="signin-popup-form__password">
                     <input type="password" name="password" placeholder="Пароль">
                 </div>
                 <div class="signin-popup-form__submit">
                     <input type="submit" value="Войти">
-                    <a href="#">Забыли пароль?</a>
+                    <a id="forget-password" href="#">Забыли пароль?</a>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="js/common.js"></script>
+    <script src="js/signInPopup.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

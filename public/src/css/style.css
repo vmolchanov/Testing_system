@@ -450,6 +450,9 @@ body.no-scroll {
     width: 100%;
     content: ""; }
 
+.signin-popup-form--error {
+  border: 1px solid red !important; }
+
 .social {
   width: 400px;
   height: 100%;

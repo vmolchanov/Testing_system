@@ -8,7 +8,7 @@
             </p>
         </div>
         <div class="hero__form">
-            <form action="" method="POST" id="register-form" class="register-form">
+            <form action="users/register" method="POST" id="register-form" class="register-form">
                 <div class="register-form__email">
                     <input type="email" name="email" placeholder="Email">
                 </div>
@@ -25,7 +25,7 @@
     <div class="signin-popup__wrap">
         <h2 class="signin-popup__header">Войти</h2>
         <div class="signin-popup__close"></div>
-        <form action="/login" method="POST" class="signin-popup-form">
+        <form action="users/login" method="POST" class="signin-popup-form">
             <div class="signin-popup-form__email">
                 <input type="email" name="email" placeholder="Email">
             </div>
@@ -34,12 +34,13 @@
             </div>
             <div class="signin-popup-form__submit">
                 <input type="submit" value="Войти">
-                <a href="#">Забыли пароль?</a>
+                <a id="forget-password" href="#">Забыли пароль?</a>
             </div>
         </form>
     </div>
 </div>
 
 <script src="js/registerForm.js"></script>
+<script src="js/loginForm.js"></script>
 <script src="js/signInPopup.js"></script>
 <script src="js/index.js"></script>
