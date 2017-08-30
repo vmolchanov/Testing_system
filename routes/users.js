@@ -4,32 +4,37 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const registerController = require("../controllers/registerController");
-const loginController = require("../controllers/loginController");
 const User = require("../models/user");
 
 
 router.post("/register", registerController);
 
-passport.use(new LocalStrategy((email, password, done) => {
-    User.getUserByEmail(email, (err, user) => {
-        if (err) {
-            throw err;
-        }
-        if (!user) {
-            return done(null, false, { message: "Unknown User" });
-        }
-
-        User.comparePassword(passport, user.password, (err, isMatch) => {
+passport.use(new LocalStrategy(
+    {
+        usernameField: "email",
+        passwordField: "password"
+    },
+    (email, password, done) => {
+        User.getUserByEmail(email, (err, user) => {
             if (err) {
                 throw err;
             }
-            if (isMatch) {
-                return done(null, user);
+            if (!user) {
+                return done(null, false, { message: "Unknown User" });
             }
-            return done(null, false, { message: "Invalid password" });
+
+            User.comparePassword(password, user.password, (err, isMatch) => {
+                if (err) {
+                    throw err;
+                }
+                if (isMatch) {
+                    return done(null, user);
+                }
+                return done(null, false, { message: "Invalid password" });
+            });
         });
-    });
-}));
+    }
+));
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -41,17 +46,13 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-router.post(
-    "/login",
-    passport.authenticate("local", {
-        successRedirect: "/users/success",
-        failureRedirect: "/users/failure"
-    }),
-    loginController
-);
+router.post("/login", passport.authenticate("local", {
+    successRedirect: "/users/success",
+    failureRedirect: "/users/failure"
+}));
 
-router.post("success", (req, res) => res.send("Authentication was success"));
+router.get("/success", (req, res) => res.send("Authentication was success"));
 
-router.post("failure", (req, res) => res.send("Authentication was failure"));
+router.get("/failure", (req, res) => res.send("Authentication was failure"));
 
 module.exports = router;

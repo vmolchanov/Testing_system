@@ -1,6 +1,8 @@
 const config = require("../config/config");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const ObjectId = require("mongodb").ObjectId;
+
 
 mongoose.connect(config.mongoose.url);
 
@@ -31,7 +33,7 @@ module.exports.getUserByEmail = (email, callback) => {
 
 
 module.exports.getUserById = (id, callback) => {
-    User.findOne(id, callback);
+    User.findOne(ObjectId(id), callback);
 };
 
 
