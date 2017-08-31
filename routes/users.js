@@ -2,11 +2,15 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const path = require("path");
 
 const registerController = require("../controllers/registerController");
 const successLoginController = require("../controllers/successLoginController");
 const failureLoginController = require("../controllers/failureLoginController");
 const User = require("../models/user");
+
+
+router.use(express.static(path.join(__dirname, "../public")));
 
 
 router.post("/register", registerController);
@@ -55,11 +59,18 @@ router.get("/success", successLoginController);
 router.get("/failure", failureLoginController);
 
 router.all("/id:userId", (req, res, next) => {
-    console.log(req.params.userId);
-    next();
+    if (req.isAuthenticated()) {
+        if (req.params.userId === req.session.passport.user) {
+            next();
+        } else {
+            res.redirect("/users/id" + req.session.passport.user);
+        }
+    } else {
+        res.redirect("/");
+    }
 });
 
-router.get("/id:userId", (req, res) => res.render("user"));
+router.get("/id:userId", (req, res) => res.render("user", { userPage: true }));
 
 router.get("/logout", (req, res) => {
     req.logout();

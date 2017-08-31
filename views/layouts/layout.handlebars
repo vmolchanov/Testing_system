@@ -39,7 +39,11 @@
                 </div>
                 <div class="main-header__user">
                     <div class="user-block">
-                        <a class="user-block__signin-btn" href="#">Войти</a>
+                        {{#if userPage}}
+                            <a class="user-block__signin-btn" href="/users/logout">Выйти</a>
+                        {{else}}
+                            <a class="user-block__signin-btn" href="#">Войти</a>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="hamburger">
