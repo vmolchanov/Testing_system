@@ -4,6 +4,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const registerController = require("../controllers/registerController");
+const successLoginController = require("../controllers/successLoginController");
+const failureLoginController = require("../controllers/failureLoginController");
 const User = require("../models/user");
 
 
@@ -20,7 +22,7 @@ passport.use(new LocalStrategy(
                 throw err;
             }
             if (!user) {
-                return done(null, false, { message: "Unknown User" });
+                return done(null, false, { message: "Пользователь с таким email не найден" });
             }
 
             User.comparePassword(password, user.password, (err, isMatch) => {
@@ -30,29 +32,38 @@ passport.use(new LocalStrategy(
                 if (isMatch) {
                     return done(null, user);
                 }
-                return done(null, false, { message: "Invalid password" });
+                return done(null, false, { message: "Неправильный пароль" });
             });
         });
     }
 ));
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
+passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser((id, done) => {
-    User.getUserById(id, (err, user) => {
-        done(err, user);
-    });
+    User.getUserById(id, (err, user) => done(err, user));
 });
 
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/users/success",
-    failureRedirect: "/users/failure"
+    failureRedirect: "/users/failure",
+    failureFlash: true
 }));
 
-router.get("/success", (req, res) => res.send("Authentication was success"));
+router.get("/success", successLoginController);
 
-router.get("/failure", (req, res) => res.send("Authentication was failure"));
+router.get("/failure", failureLoginController);
+
+router.all("/id:userId", (req, res, next) => {
+    console.log(req.params.userId);
+    next();
+});
+
+router.get("/id:userId", (req, res) => res.render("user"));
+
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+});
 
 module.exports = router;

@@ -64,4 +64,14 @@
         border: 1px solid red !important;
     }
 
+    &__error-msg {
+        padding-bottom: 5px;
+
+        color: red;
+    }
+
+    &__error-msg--hide {
+        display: none;
+    }
+
 }

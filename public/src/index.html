@@ -110,6 +110,7 @@
             <h2 class="signin-popup__header">Войти</h2>
             <div class="signin-popup__close"></div>
             <form action="/login" method="POST" class="signin-popup-form">
+                <div id="login-error" class="signin-popup-form__error-msg">Пользователь не найден</div>
                 <div class="signin-popup-form__email">
                     <input class="signin-popup-form--error" type="email" name="email" placeholder="Email">
                 </div>

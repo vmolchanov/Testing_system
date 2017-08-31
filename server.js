@@ -11,6 +11,7 @@ const mongo = require("mongodb");
 const mongoose = require("mongoose");
 mongoose.connect(config.mongoose.url);
 const db = mongoose.connection;
+const flash = require('connect-flash');
 
 const routes = require("./routes/index");
 const users = require("./routes/users");
@@ -42,6 +43,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Использование flash сообщений
+app.use(flash());
+
+// Подключение роутов
 app.use("/", routes);
 app.use("/users", users);
 

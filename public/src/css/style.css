@@ -453,6 +453,13 @@ body.no-scroll {
 .signin-popup-form--error {
   border: 1px solid red !important; }
 
+.signin-popup-form__error-msg {
+  padding-bottom: 5px;
+  color: red; }
+
+.signin-popup-form__error-msg--hide {
+  display: none; }
+
 .social {
   width: 400px;
   height: 100%;
