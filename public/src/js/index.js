@@ -6,22 +6,37 @@
     var registerForm = document.getElementById("register-form");
     var signInPopup = new SignInPopup();
     var loginForm = document.querySelector(".signin-popup-form");
+    var hamburger = document.querySelector(".hamburger");
+    var menu = document.querySelector(".main-menu");
 
-    registerForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        var form = new RegisterForm();
-        form.submit();
-    });
+    if (registerForm) {
+        registerForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var form = new RegisterForm();
+            form.submit();
+        });
+    }
 
-    loginButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        signInPopup.open();
-    });
+    if (loginButton) {
+        loginButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            signInPopup.open();
+        });
+    }
 
-    loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        var form = new LoginForm();
-        form.submit();
-    });
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var form = new LoginForm();
+            form.submit();
+        });
+    }
+
+    if (hamburger) {
+        hamburger.addEventListener("click", function (event) {
+            event.preventDefault();
+            menu.classList.toggle("main-menu--show")
+        });
+    }
 
 })();

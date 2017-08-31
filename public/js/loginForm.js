@@ -9,7 +9,6 @@
     function LoginForm() {
         this._emailInput = document.querySelector(".signin-popup-form__email input");
         this._passwordInput = document.querySelector(".signin-popup-form__password input");
-        this._errorField = document.getElementById("login-error");
     }
 
 
@@ -60,31 +59,14 @@
 
         var xhr = new XMLHttpRequest();
         var data = "email=" + encodeURIComponent(this._emailInput.value) +
-                   "&password=" + encodeURIComponent(this._passwordInput.value);
-        var self = this;
+            "&password=" + encodeURIComponent(this._passwordInput.value);
 
         xhr.open("POST", "users/login");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.addEventListener("readystatechange", function (event) {
             if (this.readyState === xhr.DONE) {
-                var response = JSON.parse(this.responseText);
-
-                if (response.status === "error") {
-                    self._errorField.innerHTML = response.reason;
-                    self._errorField.classList.remove("signin-popup-form__error-msg--hide");
-                    if (response.errorField === "email") {
-                        self._emailInput.focus();
-                    }
-                    if (response.errorField === "password") {
-                        self._passwordInput.focus();
-                    }
-                }
-                if (response.status === "success") {
-                    self._emailInput.value = "";
-                    self._passwordInput.value = "";
-                    self._errorField.classList.add("signin-popup-form__error-msg--hide");
-                    location.href = response.redirect;
-                }
+                console.log(this.responseText);
+                // TODO реализовать логику для входа в систему
             }
         });
         xhr.send(data);
