@@ -37,7 +37,8 @@ var path = {
         src: "./public/src",
         html: "./public/src/*.html",
         scss: "./public/src/scss/style.scss",
-        css: "./public/src/css/",
+        css: "./public/src/css",
+        buildCss: "./public/src/css/**/*.*",
         js: "./public/src/js/*.js",
         fonts: "./public/src/fonts/**/*.*",
         images: "./public/src/img/**/*.*"
@@ -131,7 +132,7 @@ gulp.task("build", function() {
 });
 
 gulp.task("build-css", function () {
-    return gulp.src(path.src.css)
+    return gulp.src(path.src.buildCss)
         .pipe(cleanCSS())
         .pipe(gulp.dest(path.build.styles));
 });
