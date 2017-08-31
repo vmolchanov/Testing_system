@@ -22,7 +22,7 @@ passport.use(new LocalStrategy(
                 throw err;
             }
             if (!user) {
-                return done(null, false, { message: "Пользователь с таким email не найден" });
+                return done(null, false, { message: "email" });
             }
 
             User.comparePassword(password, user.password, (err, isMatch) => {
@@ -32,7 +32,7 @@ passport.use(new LocalStrategy(
                 if (isMatch) {
                     return done(null, user);
                 }
-                return done(null, false, { message: "Неправильный пароль" });
+                return done(null, false, { message: "password" });
             });
         });
     }
