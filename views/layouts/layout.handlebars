@@ -19,7 +19,7 @@
             <div class="main-header__content">
                 <div class="main-header__logo">
                     <div class="logo-block">
-                        <img src="img/logo.svg" alt="logo">
+                        <a href="/"><img src="img/logo.svg" alt="logo"></a>
                     </div>
                 </div>
                 <div class="main-header__menu">
@@ -40,7 +40,7 @@
                 <div class="main-header__user">
                     <div class="user-block">
                         {{#if userPage}}
-                            <a class="user-block__signin-btn" href="/users/logout">Выйти</a>
+                            <a class="user-block__signin-btn user-block__signin-btn--logout" href="/users/logout">Выйти</a>
                         {{else}}
                             <a class="user-block__signin-btn" href="#">Войти</a>
                         {{/if}}
@@ -88,6 +88,33 @@
         </div>
     </footer>
 
-    <script src="js/common.js"></script>
+    <div id="signin-popup" class="signin-popup">
+        <div class="signin-popup__overlay"></div>
+        <div class="signin-popup__wrap">
+            <h2 class="signin-popup__header">Войти</h2>
+            <div class="signin-popup__close"></div>
+            <form action="users/login" method="POST" class="signin-popup-form">
+                <div id="login-error" class="signin-popup-form__error-msg signin-popup-form__error-msg--hide">
+                    Пользователь с указанным email не зарегистрирован
+                </div>
+                <div class="signin-popup-form__email">
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="signin-popup-form__password">
+                    <input type="password" name="password" placeholder="Пароль">
+                </div>
+                <div class="signin-popup-form__submit">
+                    <input type="submit" value="Войти">
+                    <a id="forget-password" href="/restoration">Забыли пароль?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/signInPopup.js"></script>
+    <script src="js/loginForm.js"></script>
+    <script src="js/registerForm.js"></script>
+    <script src="js/resetForm.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

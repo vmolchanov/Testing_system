@@ -8,6 +8,7 @@
     var loginForm = document.querySelector(".signin-popup-form");
     var hamburger = document.querySelector(".hamburger");
     var menu = document.querySelector(".main-menu");
+    var resetForm = document.getElementById("reset-form");
 
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
@@ -19,8 +20,10 @@
 
     if (loginButton) {
         loginButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            signInPopup.open();
+            if (!this.classList.contains("user-block__signin-btn--logout")) {
+                event.preventDefault();
+                signInPopup.open();
+            }
         });
     }
 
@@ -36,6 +39,14 @@
         hamburger.addEventListener("click", function (event) {
             event.preventDefault();
             menu.classList.toggle("main-menu--show")
+        });
+    }
+
+    if (resetForm) {
+        resetForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var form = new ResetForm();
+            form.submit();
         });
     }
 

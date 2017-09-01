@@ -2,47 +2,33 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-
-    <style>
-        body {
-            font-family: "Arial", sans-serif;
-
-            background-color: #dcdcdc;
-        }
-
-        .container {
-            width: 100%;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        ul.account-list {
-            list-style: none;
-        }
-
-        li.account-item {
-            margin-bottom: 5px;
-        }
-
-        li.account-item span.value {
-            font-weight: bold;
-        }
-    </style>
 </head>
-<body>
-    <div class="container">
-        <p>Здравствуйте! Регистрация на сайте TestUp прошла успешно.</p>
-        <ul class="account-list">
-            <li class="account-item">
+<body style="font-family: Arial, sans-serif; background-color: #fdfdfd;">
+    <div class="container" style="width: 100%; padding-left: 10px; padding-right: 10px;">
+        {{#if regEmail}}
+            <h1>Вы успешно зарегистрировались на сервисе TestUp!</h1>
+        {{/if}}
+        {{#if resetPasswordEmail}}
+            <h1>Сброс пароля</h1>
+        {{/if}}
+        {{#if regEmail}}
+            <p>Здравствуйте! Регистрация на сервисе TestUp прошла успешно. Вот ваши данные для авторизации:</p>
+        {{/if}}
+        {{#if resetPasswordEmail}}
+            <p>Здравствуйте! Вы только что запросили сброс пароля на вашем аккаунте. Вот ваши новые данные для авторизации:</p>
+        {{/if}}
+        <ul class="account-list" style="list-style: none;">
+            <li class="account-item" style="margin-bottom: 5px;">
                 <span class="key">Email:</span>
-                <span class="value">{{email}}</span>
+                <span class="value" style="font-weight: bold;">{{email}}</span>
             </li>
-            <li class="account-item">
+            <li class="account-item" style="margin-bottom: 5px;">
                 <span class="key">Пароль:</span>
-                <span class="value">{{pass}}</span>
+                <span class="value" style="font-weight: bold;">{{pass}}</span>
             </li>
         </ul>
-        <p>Приятного использования!</p>
+        <p>Не сообщайте никому эти данные.</p>
+        <p><i>С уважением, администрация сервиса TestUp</i></p>
     </div>
 </body>
 </html>

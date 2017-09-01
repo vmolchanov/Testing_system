@@ -45,3 +45,13 @@ module.exports.comparePassword = (candidatePassword, hash, callback) => {
         callback(null, isMatch);
     });
 };
+
+
+module.exports.setNewPassword = (user, callback) => {
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.password, salt, (err, hash) => {
+            let query = { email: user.email };
+            User.update(query, { password: hash }, callback);
+        });
+    });
+};

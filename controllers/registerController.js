@@ -12,12 +12,12 @@ module.exports = (req, res) => {
     let isValid = regexp.test(req.body.email);
 
     if (!isValid) {
-        return res.send({ "status": "error", "reason": "invalid" });
+        return res.send({ status: "error", reason: "invalid" });
     }
 
     User.getUserByEmail(req.body.email, (err, user) => {
         if (user) {
-            return res.send({ "status": "error", "reason": "exist" });
+            return res.send({ status: "error", reason: "Пользователь с таким email уже существует" });
         }
 
         let password = generator.generate({
@@ -36,7 +36,7 @@ module.exports = (req, res) => {
             console.log(user);
         });
 
-        res.send({ "status": "success" });
+        res.send({ status: "success" });
 
         fs.readFile("./views/email.handlebars", "utf8", (err, data) => {
             if (err) {
@@ -45,8 +45,9 @@ module.exports = (req, res) => {
 
             let template = hbs.compile(data);
             let context = {
-                "email": req.body.email,
-                "pass": password
+                regEmail: true,
+                email: req.body.email,
+                pass: password
             };
 
             let transporter = nodemailer.createTransport({
