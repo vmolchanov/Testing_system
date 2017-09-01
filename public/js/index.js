@@ -9,6 +9,7 @@
     var hamburger = document.querySelector(".hamburger");
     var menu = document.querySelector(".main-menu");
     var resetForm = document.getElementById("reset-form");
+    var timerElement = document.getElementById("timer");
 
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
@@ -20,7 +21,9 @@
 
     if (loginButton) {
         loginButton.addEventListener("click", function (event) {
-            if (!this.classList.contains("user-block__signin-btn--logout")) {
+            if (!this.classList.contains("user-block__signin-btn--logout") &&
+                !this.classList.contains("user-block__signin-btn--login-page")) {
+
                 event.preventDefault();
                 signInPopup.open();
             }
@@ -47,6 +50,13 @@
             event.preventDefault();
             var form = new ResetForm();
             form.submit();
+        });
+    }
+
+    if (timerElement) {
+        var timer = new Timer(timerElement, 3000);
+        timer.start(function () {
+            location.href = location.host + "/users/login";
         });
     }
 

@@ -8,17 +8,21 @@
     function SignInPopup() {
         this._popup = document.getElementById("signin-popup");
         this._closeButton = document.querySelector(".signin-popup__close");
-        this.overlay = document.querySelector(".signin-popup__overlay");
+        this._overlay = document.querySelector(".signin-popup__overlay");
 
         var self = this;
 
-        this.overlay.addEventListener("click", function (event) {
-            self.close(event);
-        });
+        if (this._overlay) {
+            this._overlay.addEventListener("click", function (event) {
+                self.close(event);
+            });
+        }
 
-        this._closeButton.addEventListener("click", function (event) {
-            self.close(event);
-        });
+        if (this._closeButton) {
+            this._closeButton.addEventListener("click", function (event) {
+                self.close(event);
+            });
+        }
     }
 
 

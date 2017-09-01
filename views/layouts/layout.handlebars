@@ -5,6 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- TODO сделать усповия для появления разных заголовков -->
     <title>TestUp – Система тестирования</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
@@ -37,6 +39,7 @@
                         </ul>
                     </nav>
                 </div>
+                <!-- TODO добавить кнопке войти класс user-block__signin-btn--login-page на странице /users/login -->
                 <div class="main-header__user">
                     <div class="user-block">
                         {{#if userPage}}
@@ -88,28 +91,30 @@
         </div>
     </footer>
 
-    <div id="signin-popup" class="signin-popup">
-        <div class="signin-popup__overlay"></div>
-        <div class="signin-popup__wrap">
-            <h2 class="signin-popup__header">Войти</h2>
-            <div class="signin-popup__close"></div>
-            <form action="users/login" method="POST" class="signin-popup-form">
-                <div id="login-error" class="signin-popup-form__error-msg signin-popup-form__error-msg--hide">
-                    Пользователь с указанным email не зарегистрирован
-                </div>
-                <div class="signin-popup-form__email">
-                    <input type="email" name="email" placeholder="Email">
-                </div>
-                <div class="signin-popup-form__password">
-                    <input type="password" name="password" placeholder="Пароль">
-                </div>
-                <div class="signin-popup-form__submit">
-                    <input type="submit" value="Войти">
-                    <a id="forget-password" href="/restoration">Забыли пароль?</a>
-                </div>
-            </form>
+    {{#unless loginPage}}
+        <div id="signin-popup" class="signin-popup">
+            <div class="signin-popup__overlay"></div>
+            <div class="signin-popup__wrap">
+                <h2 class="signin-popup__header">Войти</h2>
+                <div class="signin-popup__close"></div>
+                <form action="users/login" method="POST" class="signin-popup-form">
+                    <div id="login-error" class="signin-popup-form__error-msg signin-popup-form__error-msg--hide">
+                        Пользователь с указанным email не зарегистрирован
+                    </div>
+                    <div class="signin-popup-form__email">
+                        <input type="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="signin-popup-form__password">
+                        <input type="password" name="password" placeholder="Пароль">
+                    </div>
+                    <div class="signin-popup-form__submit">
+                        <input type="submit" value="Войти">
+                        <a id="forget-password" href="/restoration">Забыли пароль?</a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    {{/unless}}
 
     <script src="js/signInPopup.js"></script>
     <script src="js/loginForm.js"></script>

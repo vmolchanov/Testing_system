@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TestUp – Сброс пароля</title>
+
+    <title>TestUp - регистрация прошла успешно</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
@@ -49,23 +50,15 @@
         </div>
     </header>
 
-    <div class="reset-password-block">
-        <div class="reset-password-block__wrap">
-            <div class="reset-password-block__inner">
-                <h1>Сброс пароля</h1>
-                <span class="reset-password-block__annotation">Укажите email для которого хотите сбросить пароль</span>
-                <div class="reset-password-block__form">
-                    <form action="#" id="reset-form" class="reset-form" method="post">
-                        <div id="reset-error" class="reset-form__error-msg">Пользователь с указанным email не зарегистрирован</div>
-                        <div class="reset-form__form-group">
-                            <input type="email" name="email" placeholder="Email">
-                        </div>
-                        <div class="reset-form__submit">
-                            <input type="submit" value="Сбросить">
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <div class="success-info">
+        <div class="success-info__wrap">
+            <p>
+                Ваш пароль был успешно сброшен. Данные для авторизации были отправлены на Ваш email.
+            </p>
+            <p>
+                Вы будете перенаправлены на <a href="/users/login">страницу</a> входа через
+                <strong><span id="timer">3</span> секунды(-y)</strong>
+            </p>
         </div>
     </div>
 
@@ -107,10 +100,10 @@
         <div class="signin-popup__wrap">
             <h2 class="signin-popup__header">Войти</h2>
             <div class="signin-popup__close"></div>
-            <form action="users/login" method="POST" class="signin-popup-form">
-                <div id="login-error" class="signin-popup-form__error-msg signin-popup-form__error-msg--hide"></div>
+            <form action="/login" method="POST" class="signin-popup-form">
+                <div id="login-error" class="signin-popup-form__error-msg">Пользователь не найден</div>
                 <div class="signin-popup-form__email">
-                    <input type="email" name="email" placeholder="Email">
+                    <input class="signin-popup-form--error" type="email" name="email" placeholder="Email">
                 </div>
                 <div class="signin-popup-form__password">
                     <input type="password" name="password" placeholder="Пароль">
@@ -123,8 +116,8 @@
         </div>
     </div>
 
-    <script src="js/loginForm.js"></script>
     <script src="js/signInPopup.js"></script>
+    <script src="js/timer.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

@@ -83,7 +83,7 @@
                     self._emailInput.value = "";
                     self._passwordInput.value = "";
                     self._errorField.classList.add("signin-popup-form__error-msg--hide");
-                    location.href = response.redirect;
+                    location.href = location.origin + response.redirect;
                 }
             }
         });
