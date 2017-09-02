@@ -27,7 +27,9 @@ module.exports = (req, res) => {
 
         let newUser = new User({
             email: req.body.email,
-            password: password
+            password: password,
+            availableTests: [],
+            isAdmin: false
         });
 
         User.createUser(newUser, (err, user) => {

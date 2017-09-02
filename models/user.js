@@ -12,7 +12,15 @@ let UserSchema = mongoose.Schema({
     },
     password: {
         type: String
-    }
+    },
+    availableTests: [{
+        filename: String,
+        solutions: [{
+            date: Date,
+            progress: Number
+        }]
+    }],
+    isAdmin: Boolean
 });
 
 let User = module.exports = mongoose.model("User", UserSchema);

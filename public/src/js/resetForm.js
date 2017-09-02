@@ -54,7 +54,7 @@
 
                 if (response.status === "success") {
                     self._emailInput.value = "";
-                    alert("Пароль был успешно изменен и отправлен на email");
+                    location.href = location.origin + response.redirect + "?depart=reset";
                 }
                 if (response.status === "error") {
                     self._errorField.innerHTML = response.reason;

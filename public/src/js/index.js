@@ -56,7 +56,7 @@
     if (timerElement) {
         var timer = new Timer(timerElement, 3000);
         timer.start(function () {
-            location.href = location.host + "/users/login";
+            location.href = location.origin + "/users/login";
         });
     }
 
