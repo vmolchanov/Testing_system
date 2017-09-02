@@ -48,6 +48,7 @@
 
                 if (response.status === "success") {
                     self._emailInput.value = "";
+                    location.href = location.origin + response.redirect + "?depart=reg";
                 }
                 if (response.status === "error") {
                     alert(response.reason); // TODO сделать сообщение о некорректном Email

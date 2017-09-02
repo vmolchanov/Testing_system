@@ -1,0 +1,18 @@
+<div class="success-info">
+    <div class="success-info__wrap">
+        {{#if successfulRegistration}}
+            <p>
+                Регистрация прошла успешно. Данные для авторизации были отправлены на Ваш email.
+            </p>
+        {{/if}}
+        {{#if successfulReset}}
+            <p>
+                Ваш пароль был успешно сброшен. Данные для авторизации были отправлены на Ваш email.
+            </p>
+        {{/if}}
+        <p>
+            Вы будете перенаправлены на <a href="/users/login">страницу</a> входа через
+            <strong><span id="timer">3</span> секунды(-y)</strong>
+        </p>
+    </div>
+</div>

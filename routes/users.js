@@ -48,6 +48,8 @@ passport.deserializeUser((id, done) => {
     User.getUserById(id, (err, user) => done(err, user));
 });
 
+router.get("/login", (req, res) => res.render("login"));
+
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/users/success",
     failureRedirect: "/users/failure",

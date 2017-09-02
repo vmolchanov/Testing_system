@@ -33,7 +33,7 @@ module.exports = (req, res) => {
                 console.log("User password was update.");
             });
 
-            res.send({status: "success"});
+            res.send({ status: "success", redirect: "/success" });
 
             fs.readFile("./views/email.handlebars", "utf8", (err, data) => {
                 if (err) {
