@@ -1,0 +1,30 @@
+.management {
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @media (max-width: $media-320) {
+        @include container($container-320);
+    }
+
+    &__wrap {
+        @include container($container-1280);
+
+        @media (max-width: $media-960) {
+            @include container($container-960);
+        }
+
+        @media (max-width: $media-768) {
+            @include container($container-768);
+        }
+
+        @media (max-width: $media-480) {
+            @include container($container-480);
+        }
+
+        @media (max-width: $media-320) {
+            @include container($container-320);
+        }
+    }
+
+}

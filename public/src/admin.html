@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestUp - страница администратора</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-header__wrap">
+            <div class="main-header__content">
+                <div class="main-header__logo">
+                    <div class="logo-block">
+                        <img src="img/logo.svg" alt="logo">
+                    </div>
+                </div>
+                <div class="main-header__menu">
+                    <nav class="main-menu">
+                        <ul class="main-menu__list">
+                            <li class="main-menu__item">
+                                <a href="">Рейтинг</a>
+                            </li>
+                            <li class="main-menu__item">
+                                <a href="">Учебные пособия</a>
+                            </li>
+                            <li class="main-menu__item">
+                                <a href="">О системе</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="main-header__user">
+                    <div class="user-block">
+                        <a class="user-block__signin-btn" href="/logout">Выйти</a>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <img src="img/hamburger.svg" alt="menu">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--<div class="add-test-block">-->
+        <!--<div class="add-test-block__wrap">-->
+            <!--<div class="add-test-block__button">-->
+                <!--<button id="add-test-btn">Добавить тест</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="management">
+        <div class="management__wrap">
+            <form action="#" id="management-form" class="management-form" method="GET">
+                <div id="save-progress" class="management-form__save-progress management-form__save-progress--success">Изменения успешно сохранены</div>
+                <div class="management-form__form-group">
+                    <div class="management-form__users">
+                        <select name="selected-user" id="selected-user" class="users">
+                            <option value="ivan.ivanov@mail.ru" class="users__user">ivan.ivanov@mail.ru</option>
+                            <option value="bill.gates@outlook.com" class="users__user">bill.gates@outlook.com</option>
+                            <option value="steve.jobs@icloud.com" class="users__user">steve.jobs@icloud.com</option>
+                            <option value="arkady.volozh@yandex.ru" class="users__user">arkady.volozh@yandex.ru</option>
+                            <option value="durov@gmail.ru" class="users__user">durov@gmail.ru</option>
+                        </select>
+                        <div class="management-form__form-group">
+                            <div class="management-form__submit">
+                                <input type="button" value="Добавить тест">
+                                <input type="submit" value="Сохранить">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="management-form__tests">
+                        <div class="management-form__test">
+                            <input type="checkbox" id="test1" name="high-level-programming">
+                            <label for="test1">Программирование на языке высокого уровня</label>
+                        </div>
+                        <div class="management-form__test">
+                            <input type="checkbox" id="test2" name="parallel">
+                            <label for="test2">Параллельное программирование</label>
+                        </div>
+                        <div class="management-form__test">
+                            <input type="checkbox" id="test3" name="science-dev">
+                            <label for="test3">Разработка программных средств для научного эксперимента</label>
+                        </div>
+                        <div class="management-form__test">
+                            <input type="checkbox" id="test4" name="machine-learning">
+                            <label for="test4">Технологии исскуственного интелекта</label>
+                        </div>
+                        <div class="management-form__test">
+                            <input type="checkbox" id="test5" name="algorighms">
+                            <label for="test5">Теория алгоритмов</label>
+                        </div>
+                        <div class="management-form__test">
+                            <input type="checkbox" id="test6" name="img-analysis">
+                            <label for="test6">Методы анализа и распознавания изображений</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="main-footer__wrap">
+            <div class="author">Разработчик:</div>
+            <div class="social">
+                <div class="social__item">
+                    <a href="mailto:Molchanov96@yandex.ru" target="_blank" title="Написать на почту">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://t.me/vmolchanov" target="_blank" title="Telegram">
+                        <i class="fa fa-telegram" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://vk.com/id6818519" target="_blank" title="Вконтакте">
+                        <i class="fa fa-vk" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://github.com/vmolchanov" target="_blank" title="Github">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://codepen.io/vmolchanov/" target="_blank" title="Codepen">
+                        <i class="fa fa-codepen" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

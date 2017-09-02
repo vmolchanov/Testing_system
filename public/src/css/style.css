@@ -30,6 +30,52 @@ body {
 body.no-scroll {
   overflow-y: hidden; }
 
+.add-test-block {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+  .add-test-block__wrap {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    text-align: right; }
+    @media (max-width: 1279px) {
+      .add-test-block__wrap {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 959px) {
+      .add-test-block__wrap {
+        width: 768px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 767px) {
+      .add-test-block__wrap {
+        width: 480px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 479px) {
+      .add-test-block__wrap {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto; } }
+  .add-test-block__button {
+    display: inline-block; }
+    .add-test-block__button button {
+      display: block;
+      width: 200px;
+      height: 45px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #f5f5f5; }
+      .add-test-block__button button:hover {
+        background-color: #ededed;
+        cursor: pointer; }
+
 .author {
   text-align: center;
   color: white; }
@@ -310,6 +356,117 @@ body.no-scroll {
         display: block; } }
   .main-menu--show {
     display: block; }
+
+.management {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+  @media (max-width: 479px) {
+    .management {
+      width: 320px;
+      margin-left: auto;
+      margin-right: auto; } }
+  .management__wrap {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px; }
+    @media (max-width: 1279px) {
+      .management__wrap {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 959px) {
+      .management__wrap {
+        width: 768px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 767px) {
+      .management__wrap {
+        width: 480px;
+        margin-left: auto;
+        margin-right: auto; } }
+    @media (max-width: 479px) {
+      .management__wrap {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto; } }
+
+.management-form {
+  position: relative;
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto; }
+  .management-form__form-group {
+    margin-left: auto;
+    margin-right: auto; }
+    .management-form__form-group::after {
+      content: "";
+      display: table;
+      clear: both; }
+  .management-form__users, .management-form__tests {
+    padding: 50px;
+    float: left; }
+  .management-form__tests {
+    max-width: 600px; }
+  .management-form__test input {
+    display: none; }
+  .management-form__test label {
+    position: relative;
+    display: block;
+    padding-left: 25px; }
+  .management-form__test input + label::before {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font: normal normal normal 16px/1 FontAwesome;
+    content: "\f096"; }
+  .management-form__test input:checked + label::before {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font: normal normal normal 16px/1 FontAwesome;
+    content: "\f046"; }
+  .management-form__test:not(:last-child) {
+    margin-bottom: 5px; }
+  .management-form__submit {
+    padding-top: 20px; }
+    .management-form__submit input {
+      display: block;
+      width: 200px;
+      height: 45px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #f5f5f5; }
+      .management-form__submit input:hover {
+        background-color: #ededed;
+        cursor: pointer; }
+    .management-form__submit input:not(:last-child) {
+      margin-bottom: 10px; }
+  .management-form__save-progress {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    padding-left: 20px; }
+  .management-form__save-progress--success {
+    color: forestgreen; }
+    .management-form__save-progress--success::before {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font: normal normal normal 16px/1 FontAwesome;
+      content: "\f058"; }
+  .management-form__save-progress--error {
+    color: red; }
+    .management-form__save-progress--error::before {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font: normal normal normal 16px/1 FontAwesome;
+      content: "\f057"; }
 
 .register-form {
   width: 500px;
