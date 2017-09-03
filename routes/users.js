@@ -7,11 +7,13 @@ const path = require("path");
 const registerController = require("../controllers/registerController");
 const successLoginController = require("../controllers/successLoginController");
 const failureLoginController = require("../controllers/failureLoginController");
+const userController = require("../controllers/userController");
+const logoutController = require("../controllers/logoutController");
+const loginController = require("../controllers/loginController");
 const User = require("../models/user");
 
 
 router.use(express.static(path.join(__dirname, "../public")));
-
 
 router.post("/register", registerController);
 
@@ -44,11 +46,9 @@ passport.use(new LocalStrategy(
 
 passport.serializeUser((user, done) => done(null, user.id));
 
-passport.deserializeUser((id, done) => {
-    User.getUserById(id, (err, user) => done(err, user));
-});
+passport.deserializeUser((id, done) => User.getUserById(id, (err, user) => done(err, user)));
 
-router.get("/login", (req, res) => res.render("login"));
+router.get("/login", loginController);
 
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/users/success",
@@ -72,11 +72,8 @@ router.all("/id:userId", (req, res, next) => {
     }
 });
 
-router.get("/id:userId", (req, res) => res.render("user", { userPage: true }));
+router.get("/id:userId", userController);
 
-router.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
+router.get("/logout", logoutController);
 
 module.exports = router;
