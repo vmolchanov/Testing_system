@@ -63,7 +63,7 @@
             "&password=" + encodeURIComponent(this._passwordInput.value);
         var self = this;
 
-        xhr.open("POST", "users/login");
+        xhr.open("POST", "/users/login");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.addEventListener("readystatechange", function (event) {
             if (this.readyState === xhr.DONE) {
