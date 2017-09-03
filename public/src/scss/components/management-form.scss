@@ -98,10 +98,13 @@
         top: 10px;
         left: 50px;
 
+        display: none;
         padding-left: 20px;
     }
 
     &__save-progress--success {
+        display: block;
+
         color: forestgreen;
 
         &::before {
@@ -116,6 +119,8 @@
     }
 
     &__save-progress--error {
+        display: block;
+
         color: red;
 
         &::before {

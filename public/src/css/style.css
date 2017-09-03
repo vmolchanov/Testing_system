@@ -30,52 +30,6 @@ body {
 body.no-scroll {
   overflow-y: hidden; }
 
-.add-test-block {
-  padding-top: 50px;
-  padding-bottom: 50px; }
-  .add-test-block__wrap {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
-    text-align: right; }
-    @media (max-width: 1279px) {
-      .add-test-block__wrap {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto; } }
-    @media (max-width: 959px) {
-      .add-test-block__wrap {
-        width: 768px;
-        margin-left: auto;
-        margin-right: auto; } }
-    @media (max-width: 767px) {
-      .add-test-block__wrap {
-        width: 480px;
-        margin-left: auto;
-        margin-right: auto; } }
-    @media (max-width: 479px) {
-      .add-test-block__wrap {
-        width: 320px;
-        margin-left: auto;
-        margin-right: auto; } }
-  .add-test-block__button {
-    display: inline-block; }
-    .add-test-block__button button {
-      display: block;
-      width: 200px;
-      height: 45px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: bold;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      background-color: #f5f5f5; }
-      .add-test-block__button button:hover {
-        background-color: #ededed;
-        cursor: pointer; }
-
 .author {
   text-align: center;
   color: white; }
@@ -450,8 +404,10 @@ body.no-scroll {
     position: absolute;
     top: 10px;
     left: 50px;
+    display: none;
     padding-left: 20px; }
   .management-form__save-progress--success {
+    display: block;
     color: forestgreen; }
     .management-form__save-progress--success::before {
       position: absolute;
@@ -460,6 +416,7 @@ body.no-scroll {
       font: normal normal normal 16px/1 FontAwesome;
       content: "\f058"; }
   .management-form__save-progress--error {
+    display: block;
     color: red; }
     .management-form__save-progress--error::before {
       position: absolute;
