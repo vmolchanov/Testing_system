@@ -11,11 +11,16 @@ module.exports = (req, res) => {
         }
         let context = {
             title: user.isAdmin ? "Администратор" : "Пользователь",
-            userPage: true
+            userPage: true,
+            adminPage: user.isAdmin
         };
         if (user.isAdmin) {
-            return res.render("admin", context);
+            User.getUsers((err, users) => {
+                context.users = users;
+                return res.render("admin", context);
+            });
+        } else {
+            return res.render("user", context);
         }
-        res.render("user", context);
     });
 };

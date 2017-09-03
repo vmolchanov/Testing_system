@@ -1,20 +1,18 @@
 <div class="management">
     <div class="management__wrap">
         <form action="#" id="management-form" class="management-form" method="GET">
-            <div id="save-progress" class="management-form__save-progress management-form__save-progress--success">Изменения успешно сохранены</div>
+            <div id="save-progress" class="management-form__save-progress"></div>
             <div class="management-form__form-group">
                 <div class="management-form__users">
                     <select name="selected-user" id="selected-user" class="users">
-                        <option value="ivan.ivanov@mail.ru" class="users__user">ivan.ivanov@mail.ru</option>
-                        <option value="bill.gates@outlook.com" class="users__user">bill.gates@outlook.com</option>
-                        <option value="steve.jobs@icloud.com" class="users__user">steve.jobs@icloud.com</option>
-                        <option value="arkady.volozh@yandex.ru" class="users__user">arkady.volozh@yandex.ru</option>
-                        <option value="durov@gmail.ru" class="users__user">durov@gmail.ru</option>
+                        {{#each users}}
+                            <option value="{{this.email}}" class="users__user">{{this.email}}</option>
+                        {{/each}}
                     </select>
                     <div class="management-form__form-group">
                         <div class="management-form__submit">
-                            <input type="button" value="Добавить тест">
-                            <input type="submit" value="Сохранить">
+                            <input id="add-test-btn" type="button" value="Добавить тест">
+                            <input id="save-btn" type="submit" value="Сохранить">
                         </div>
                     </div>
                 </div>

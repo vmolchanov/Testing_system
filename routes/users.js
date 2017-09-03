@@ -10,7 +10,6 @@ const failureLoginController = require("../controllers/failureLoginController");
 const userController = require("../controllers/userController");
 const logoutController = require("../controllers/logoutController");
 const loginController = require("../controllers/loginController");
-const availableTestsController = require("../controllers/availableTestsController");
 const User = require("../models/user");
 
 
@@ -74,8 +73,6 @@ router.all("/id:userId", (req, res, next) => {
 });
 
 router.get("/id:userId", userController);
-
-router.get("/availabletests", availableTestsController);
 
 router.get("/logout", logoutController);
 

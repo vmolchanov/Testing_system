@@ -10,6 +10,7 @@
     var menu = document.querySelector(".main-menu");
     var resetForm = document.getElementById("reset-form");
     var timerElement = document.getElementById("timer");
+    var managementForm = document.getElementById("management-form");
 
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
@@ -58,6 +59,10 @@
         timer.start(function () {
             location.href = location.origin + "/users/login";
         });
+    }
+
+    if (managementForm) {
+        var form = new ManagementForm();
     }
 
 })();
