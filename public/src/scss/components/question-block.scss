@@ -1,0 +1,24 @@
+.question-block {
+
+    textarea {
+        width: 100%;
+        height: 130px;
+        resize: none;
+        padding: 10px;
+    }
+
+    &__attach-photo-button {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    &__answer {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    &:not(:first-child) {
+        border-top: 1px dotted black;
+    }
+
+}

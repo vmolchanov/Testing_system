@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestUp - Добавить тест</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-header__wrap">
+            <div class="main-header__content">
+                <div class="main-header__logo">
+                    <div class="logo-block">
+                        <img src="img/logo.svg" alt="logo">
+                    </div>
+                </div>
+                <div class="main-header__menu">
+                    <nav class="main-menu">
+                        <ul class="main-menu__list">
+                            <li class="main-menu__item">
+                                <a href="">Рейтинг</a>
+                            </li>
+                            <li class="main-menu__item">
+                                <a href="">Учебные пособия</a>
+                            </li>
+                            <li class="main-menu__item">
+                                <a href="">О системе</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="main-header__user">
+                    <div class="user-block">
+                        <a class="user-block__signin-btn" href="#">Войти</a>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <img src="img/hamburger.svg" alt="menu">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="add-test">
+        <div class="add-test__wrap">
+            <form action="#" id="add-test-form" class="add-test-form" method="POST">
+                <div class="question-block">
+                    <h2 class="question-block__title">Вопрос 1</h2>
+                    <div class="question-block__question">
+                        <textarea name="question1" id="question1" cols="30" rows="10" placeholder="Введите вопрос..."></textarea>
+                    </div>
+                    <div class="question-block__attach-photo-button">
+                        <input type="file">
+                    </div>
+                    <div class="question-block__answer-type">
+                        <select name="answer-type" id="answer-type1">
+                            <option value="test-answer">Тестовый</option>
+                            <option value="handle">Ручной</option>
+                        </select>
+                    </div>
+                    <div class="question-block__answer">
+                        <div class="answer-block answer-block--test">
+                            <div class="answer-block__item">
+                                <input id="answer1-1" type="checkbox">
+                                <input type="text" placeholder="Ответ 1">
+                            </div>
+                            <div class="answer-block__item">
+                                <input id="answer1-2" type="checkbox">
+                                <input type="text" placeholder="Ответ 2">
+                            </div>
+                            <div class="answer-block__item">
+                                <input id="answer1-3" type="checkbox">
+                                <input type="text" placeholder="Ответ 3">
+                            </div>
+                            <div class="answer-block__item">
+                                <input id="answer1-4" type="checkbox">
+                                <input type="text" placeholder="Ответ 4">
+                            </div>
+                            <div class="answer-block__add-item">
+                                <button>Добавить вариант ответа</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <h2 class="question-block__title">Вопрос 2</h2>
+                    <div class="question-block__question">
+                        <textarea name="question2" id="question2" cols="30" rows="10" placeholder="Введите вопрос..."></textarea>
+                    </div>
+                    <div class="question-block__attach-photo-button">
+                        <input type="file">
+                    </div>
+                    <div class="question-block__answer-type">
+                        <select name="answer-type" id="answer-type2">
+                            <option value="test-answer">Тестовый</option>
+                            <option value="handle">Ручной</option>
+                        </select>
+                    </div>
+                    <div class="question-block__answer">
+                        <div class="answer-block answer-block--handle">
+                            <div class="answer-block__item">
+                                <label for="answer1-1">Ответ:</label>
+                                <textarea name="answer2-1" id="answer2-1" cols="30" rows="10" placeholder="Введите ответ..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-test-form__buttons">
+                    <button>Добавить вопрос</button>
+                    <input type="submit" value="Сохранить">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="main-footer__wrap">
+            <div class="author">Разработчик:</div>
+            <div class="social">
+                <div class="social__item">
+                    <a href="mailto:Molchanov96@yandex.ru" target="_blank" title="Написать на почту">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://t.me/vmolchanov" target="_blank" title="Telegram">
+                        <i class="fa fa-telegram" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://vk.com/id6818519" target="_blank" title="Вконтакте">
+                        <i class="fa fa-vk" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://github.com/vmolchanov" target="_blank" title="Github">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://codepen.io/vmolchanov/" target="_blank" title="Codepen">
+                        <i class="fa fa-codepen" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

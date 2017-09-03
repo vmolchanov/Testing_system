@@ -2,6 +2,9 @@
 @import "base";
 @import "mixins";
 
+@import "components/add-test";
+@import "components/add-test-form";
+@import "components/answer-block";
 @import "components/author";
 @import "components/available-tests";
 @import "components/hamburger";
@@ -12,6 +15,7 @@
 @import "components/main-menu";
 @import "components/management";
 @import "components/management-form";
+@import "components/question-block";
 @import "components/register-form";
 @import "components/reset-form";
 @import "components/reset-password-block";
