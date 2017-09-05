@@ -42,11 +42,16 @@
         var button = document.createElement("button");
         button.classList.add("answer-block__delete-answer");
         button.setAttribute("data-answer", String(answerNumber));
-        button.textContent = "y"; // TODO изменить текст кнопки
         button.addEventListener("click", this._onDeleteAnswerClick);
+
+        var id = Math.floor(1 + Math.random() * 999999999);
 
         var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
+        checkbox.id = "answer" + String(id);
+
+        var label = document.createElement("label");
+        label.setAttribute("for", "answer" + String(id));
 
         var textInput = document.createElement("input");
         textInput.type = "text";
@@ -54,6 +59,7 @@
 
         answerBlockItem.appendChild(button);
         answerBlockItem.appendChild(checkbox);
+        answerBlockItem.appendChild(label);
         answerBlockItem.appendChild(textInput);
 
         return answerBlockItem;
@@ -97,7 +103,6 @@
         var deleteQuestionButton = document.createElement("button");
         deleteQuestionButton.classList.add("question-block__delete-question");
         deleteQuestionButton.setAttribute("data-question", String(this._questions.length));
-        deleteQuestionButton.textContent = "у"; // TODO изменить текст кнопки
         deleteQuestionButton.addEventListener("click", this._onDeleteQuestionClick);
 
         var h2 = document.createElement("h2");

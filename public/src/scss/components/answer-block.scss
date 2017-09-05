@@ -11,6 +11,63 @@
     &__delete-answer {
         position: absolute;
         left: -30px;
+        top: 1px;
+
+        border: none;
+        background: none;
+        opacity: 0.3;
+        outline: none;
+
+        &::before {
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: 18px;
+
+            content: "\f05e";
+        }
+
+        &:hover {
+            opacity: 1;
+
+            cursor: pointer;
+        }
+    }
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    input[type=text] {
+        margin-left: 25px;
+    }
+
+    label {
+        position: relative;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    // Кастомный не выбранный checkbox
+    input + label::before {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+
+        font: normal normal normal 16px/1 FontAwesome;
+
+        content: "\f096";
+    }
+
+    // Кастомный выбранный checkbox
+    input:checked + label::before {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+
+        font: normal normal normal 16px/1 FontAwesome;
+
+        content: "\f046";
     }
 
 }
