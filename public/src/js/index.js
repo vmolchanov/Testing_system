@@ -10,6 +10,8 @@
     var menu = document.querySelector(".main-menu");
     var resetForm = document.getElementById("reset-form");
     var timerElement = document.getElementById("timer");
+    var managementFormElement = document.getElementById("management-form");
+    var addTestFormElement = document.getElementById("add-test-form");
 
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
@@ -58,6 +60,14 @@
         timer.start(function () {
             location.href = location.origin + "/users/login";
         });
+    }
+
+    if (managementFormElement) {
+        var managementForm = new ManagementForm();
+    }
+
+    if (addTestFormElement) {
+        var addTestForm = new AddTestForm();
     }
 
 })();

@@ -52,70 +52,10 @@
     <div class="add-test">
         <div class="add-test__wrap">
             <form action="#" id="add-test-form" class="add-test-form" method="POST">
-                <div class="question-block">
-                    <h2 class="question-block__title">Вопрос 1</h2>
-                    <div class="question-block__question">
-                        <textarea name="question1" id="question1" cols="30" rows="10" placeholder="Введите вопрос..."></textarea>
-                    </div>
-                    <div class="question-block__attach-photo-button">
-                        <input type="file">
-                    </div>
-                    <div class="question-block__answer-type">
-                        <select name="answer-type" id="answer-type1">
-                            <option value="test-answer">Тестовый</option>
-                            <option value="handle">Ручной</option>
-                        </select>
-                    </div>
-                    <div class="question-block__answer">
-                        <div class="answer-block answer-block--test">
-                            <div class="answer-block__item">
-                                <input id="answer1-1" type="checkbox">
-                                <input type="text" placeholder="Ответ 1">
-                            </div>
-                            <div class="answer-block__item">
-                                <input id="answer1-2" type="checkbox">
-                                <input type="text" placeholder="Ответ 2">
-                            </div>
-                            <div class="answer-block__item">
-                                <input id="answer1-3" type="checkbox">
-                                <input type="text" placeholder="Ответ 3">
-                            </div>
-                            <div class="answer-block__item">
-                                <input id="answer1-4" type="checkbox">
-                                <input type="text" placeholder="Ответ 4">
-                            </div>
-                            <div class="answer-block__add-item">
-                                <button>Добавить вариант ответа</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="add-test-form__questions"></div>
 
-                <div class="question-block">
-                    <h2 class="question-block__title">Вопрос 2</h2>
-                    <div class="question-block__question">
-                        <textarea name="question2" id="question2" cols="30" rows="10" placeholder="Введите вопрос..."></textarea>
-                    </div>
-                    <div class="question-block__attach-photo-button">
-                        <input type="file">
-                    </div>
-                    <div class="question-block__answer-type">
-                        <select name="answer-type" id="answer-type2">
-                            <option value="test-answer">Тестовый</option>
-                            <option value="handle">Ручной</option>
-                        </select>
-                    </div>
-                    <div class="question-block__answer">
-                        <div class="answer-block answer-block--handle">
-                            <div class="answer-block__item">
-                                <label for="answer1-1">Ответ:</label>
-                                <textarea name="answer2-1" id="answer2-1" cols="30" rows="10" placeholder="Введите ответ..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="add-test-form__buttons">
-                    <button>Добавить вопрос</button>
+                    <button id="add-question-btn">Добавить вопрос</button>
                     <input type="submit" value="Сохранить">
                 </div>
             </form>
@@ -154,5 +94,10 @@
             </div>
         </div>
     </footer>
+
+
+    <script src="js/addTestForm.js"></script>
+    <script src="js/signInPopup.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
