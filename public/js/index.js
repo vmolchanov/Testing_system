@@ -10,7 +10,8 @@
     var menu = document.querySelector(".main-menu");
     var resetForm = document.getElementById("reset-form");
     var timerElement = document.getElementById("timer");
-    var managementForm = document.getElementById("management-form");
+    var managementFormElement = document.getElementById("management-form");
+    var addTestFormElement = document.getElementById("add-test-form");
 
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
@@ -61,8 +62,12 @@
         });
     }
 
-    if (managementForm) {
-        var form = new ManagementForm();
+    if (managementFormElement) {
+        var managementForm = new ManagementForm();
+    }
+
+    if (addTestFormElement) {
+        var addTestForm = new AddTestForm();
     }
 
 })();
