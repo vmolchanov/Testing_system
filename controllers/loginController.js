@@ -1,3 +1,6 @@
 module.exports = (req, res) => {
-    return res.render("login", { title: "Войти" })
+    if (req.isAuthenticated()) {
+        return res.redirect("/users/id" + req.session.passport.user);
+    }
+    return res.render("login", { title: "Войти" });
 };

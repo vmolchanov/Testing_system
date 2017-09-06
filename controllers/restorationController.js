@@ -7,6 +7,10 @@ const fs = require("fs");
 
 
 module.exports = (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect("/users/id" + req.session.passport.user);
+    }
+
     if (req.method === "PUT") {
         User.getUserByEmail(req.body.email, (err, user) => {
             if (err) {
