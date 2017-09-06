@@ -29,6 +29,110 @@
 
 
     /**
+     * Метод используется для валидации формы. Валидация происходит по трем критериям:
+     *   1) Проверка на пустоту поля с вопросом;
+     *   2) Проверка на пустоту поля с ответом (или нескольких полей для тестовых вопросов);
+     *   3) Для тестовых вопросов проверяется наличие хотя бы одного ответа, отмеченного как правильный
+     * @returns {{isValid: boolean, errorFields: Array}} - объект с признаком результата валидации (isValid)
+     *     и массивом названий полей, которые не прошли валидацию (errorFields)
+     */
+    AddTestForm.prototype.validate = function () {
+        var isValid = true;
+        /**
+         * @type {Array} errorFields
+         * @type {number} errorFields[].questionNumber - номер вопроса, в котором валидация не пройдена
+         * @type {string} errorFields[].errorPlace - место, где валидация не пройдена. Принимает значение question если
+         *     валидация не прошла на проверке вопроса и принимает значение answer если валидация не прошла на
+         *     проверке ответа
+         * @type {Object} errorFields[].errorType - дополнительное поле, которое присутствует только если
+         *     errorPlace === "answer"
+         * @type {string} errorFields[].errorType.type - тип ошибки ответа. Принимает значение empty если найдено
+         *     незаполненное поле ответа и принимает значение noRight если в тестовом вопросе не отмечено ни одного
+         *     правильного ответа
+         * @type {Array} errorFields[].errorType.wrongFields - массив номеров ответов, которые не прошли валидацию.
+         *     Присутствует только если type === "empty"
+         */
+        var errorFields = [];
+
+        this._questions.forEach(function (question) {
+            var questionValue = question.querySelector(".question-block__question textarea").value;
+
+            if (questionValue === "") {
+                isValid = false;
+                errorFields.push({
+                    questionNumber: Number(question.getAttribute("data-question")),
+                    errorPlace: "question"
+                });
+                return;
+            }
+
+            var questionType = question.querySelector(".question-block__answer-type select").value;
+
+            if (questionType === "test-answer") {
+                var answers = question.querySelectorAll(".answer-block__item input[type=text]");
+                var answersValues = Array.prototype.map.call(answers, function (answer) {
+                    return answer.value;
+                });
+                var wrongAnswers = [];
+                
+                answersValues.forEach(function (answerValue, answerValueIndex) {
+                    if (answerValue === "") {
+                        isValid = false;
+                        wrongAnswers.push(Number(answers[answerValueIndex].getAttribute("data-answer")));
+                    }
+                });
+                
+                if (wrongAnswers.length !== 0) {
+                    errorFields.push({
+                        questionNumber: Number(question.getAttribute("data-question")),
+                        errorPlace: "answer",
+                        errorType: {
+                            type: "empty",
+                            wrongFields: wrongAnswers
+                        }
+                    });
+                    return;
+                }
+                
+                var checkboxes = question.querySelectorAll(".answer-block__item input[type=checkbox]");
+                
+                var haveRightAnswer = Array.prototype.some.call(checkboxes, function (checkbox) {
+                    return checkbox.checked;
+                });
+                
+                if (!haveRightAnswer) {
+                    isValid = false;
+                    errorFields.push({
+                        questionNumber: Number(question.getAttribute("data-question")),
+                        errorPlace: "answer",
+                        errorType: {
+                            type: "noRight"
+                        }
+                    });
+                    return;
+                }
+            }
+            if (questionType === "handle") {
+                var answer = question.querySelector(".answer-block__item textarea").value;
+
+                if (answer === "") {
+                    isValid = false;
+                    errorFields.push({
+                        questionNumber: Number(question.getAttribute("data-question")),
+                        errorPlace: "answer",
+                        errorType: {
+                            type: "empty"
+                        }
+                    });
+                }
+            }
+        });
+        
+        return { isValid: isValid, errorFields: errorFields };
+    };
+
+
+    /**
      * Метод создает DOM элемент с тестовым ответом
      * @param {number} answerNumber - индекс ответа в вопросе
      * @returns {Element} - DOM элемент с ответом
