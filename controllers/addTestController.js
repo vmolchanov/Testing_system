@@ -45,7 +45,7 @@ module.exports = (req, res) => {
                             img: img.data,
                             path: path.join(__dirname, `/../public/img/${objectId}/${imgCounter++}.${imgType}`)
                         });
-                        item.file = `img/${objectId}/${imgCounter}`;
+                        item.file = `img/${objectId}/${imgCounter}.${imgType}`;
                     }
                 });
 
@@ -61,7 +61,7 @@ module.exports = (req, res) => {
                         throw err;
                     }
                     console.log("Test was added");
-                    res.json({ status: "success" });
+                    res.json({ status: "success", redirect: `/users/id${req.session.passport.user}` });
 
                     images.forEach(image => {
                         fs.writeFile(image.path, image.img, err => {

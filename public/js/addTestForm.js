@@ -246,8 +246,11 @@
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.addEventListener("readystatechange", function (event) {
                 if (this.readyState === xhr.DONE) {
-                    console.log(xhr.responseText);
-                    // TODO доделать
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.status === "success") {
+                        location.href = location.origin + response.redirect;
+                    }
                 }
             });
             xhr.send(JSON.stringify({
