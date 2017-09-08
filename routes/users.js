@@ -77,6 +77,8 @@ router.get("/id:userId", userController);
 
 router.get("/addtest", addTestController);
 
+router.post("/addtest", addTestController);
+
 router.get("/logout", logoutController);
 
 module.exports = router;

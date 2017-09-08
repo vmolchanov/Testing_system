@@ -11,7 +11,7 @@
     &__delete-answer {
         position: absolute;
         left: -30px;
-        top: 1px;
+        top: 6px;
 
         border: none;
         background: none;
@@ -40,6 +40,10 @@
         margin-left: 25px;
     }
 
+    input[type=text].answer-block--error {
+        border: 2px solid red;
+    }
+
     label {
         position: relative;
 
@@ -51,7 +55,7 @@
     // Кастомный не выбранный checkbox
     input + label::before {
         position: absolute;
-        top: 1px;
+        top: 2px;
         left: 1px;
 
         font: normal normal normal 16px/1 FontAwesome;
@@ -59,15 +63,30 @@
         content: "\f096";
     }
 
+    input + label.answer-block--error::before {
+        position: absolute;
+        top: 2px;
+        left: 1px;
+
+        font: normal normal normal 16px/1 FontAwesome;
+        color: red;
+
+        content: "\f096";
+    }
+
     // Кастомный выбранный checkbox
     input:checked + label::before {
         position: absolute;
-        top: 1px;
+        top: 2px;
         left: 1px;
 
         font: normal normal normal 16px/1 FontAwesome;
 
         content: "\f046";
+    }
+
+    textarea.answer-block--error {
+        border: 2px solid red;
     }
 
 }

@@ -3,20 +3,23 @@ const mongoose = require("mongoose");
 
 
 const TestSchema = mongoose.Schema({
-    tests: [{
-        filename: String,
-        name: String,
-        description: String,
-        questions: [{
-            type: String,
-            question: String,
-            answers: [{
-                isRight: Boolean,
-                answer: String
-            }],
-            answer: String
-        }]
-    }]
+    name: {
+        type: String
+    },
+    questionsCount: {
+        type: Number
+    },
+    data: Array
 });
 
 let Test = module.exports = mongoose.model("Test", TestSchema);
+
+
+/**
+ * Добавление в базу данных нового теста
+ * @param {Object} newTest - данные нового теста
+ * @param {Function} callback - функция обратного вызова
+ */
+module.exports.addTest = (newTest, callback) => {
+    newTest.save(callback);
+};

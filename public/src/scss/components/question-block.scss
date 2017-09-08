@@ -14,6 +14,10 @@
         padding: 10px;
     }
 
+    textarea.question-block--error {
+        border: 2px solid red;
+    }
+
     &__attach-photo-button {
         padding-top: 20px;
         padding-bottom: 20px;

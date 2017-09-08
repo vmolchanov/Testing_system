@@ -2,6 +2,17 @@
     <div class="add-test__wrap">
         <!-- TODO добавить action -->
         <form action="#" id="add-test-form" class="add-test-form" method="POST">
+            <div class="add-test-form__meta">
+                <div class="add-test-form__test-name">
+                    <label for="test-name">Название теста</label>
+                    <input id="test-name" type="text" placeholder="Название теста">
+                </div>
+                <div class="add-test-form__question-count">
+                    <label for="question-count">Количество вопросов в тесте:</label>
+                    <input id="question-count" type="number">
+                </div>
+            </div>
+
             <div class="add-test-form__questions"></div>
 
             <div class="add-test-form__buttons">

@@ -74,14 +74,14 @@
                     return answer.value;
                 });
                 var wrongAnswers = [];
-                
+
                 answersValues.forEach(function (answerValue, answerValueIndex) {
                     if (answerValue === "") {
                         isValid = false;
-                        wrongAnswers.push(Number(answers[answerValueIndex].getAttribute("data-answer")));
+                        wrongAnswers.push(Number(answers[answerValueIndex].parentNode.getAttribute("data-answer")));
                     }
                 });
-                
+
                 if (wrongAnswers.length !== 0) {
                     errorFields.push({
                         questionNumber: Number(question.getAttribute("data-question")),
@@ -93,13 +93,13 @@
                     });
                     return;
                 }
-                
+
                 var checkboxes = question.querySelectorAll(".answer-block__item input[type=checkbox]");
-                
+
                 var haveRightAnswer = Array.prototype.some.call(checkboxes, function (checkbox) {
                     return checkbox.checked;
                 });
-                
+
                 if (!haveRightAnswer) {
                     isValid = false;
                     errorFields.push({
@@ -127,8 +127,135 @@
                 }
             }
         });
-        
+
         return { isValid: isValid, errorFields: errorFields };
+    };
+
+
+    /**
+     * Метод выполняет валидацию полей и отправку ajax-запроса, если валидация пройдена
+     */
+    AddTestForm.prototype.submit = function () {
+        var validate = this.validate();
+        var self = this;
+
+        // Сброс стилей для ошибки
+        Array.prototype.forEach.call(this._questions, function (question) {
+            question.querySelector(".question-block__question textarea").classList.remove("question-block--error");
+            if (question.querySelector(".answer-block").classList.contains("answer-block--handle")) {
+                question.querySelector(".answer-block__item textarea").classList.remove("answer-block--error");
+            } else {
+                Array.prototype.forEach.call(question.querySelectorAll(".answer-block__item"), function (answer) {
+                    answer.querySelector("input[type=text]").classList.remove("answer-block--error");
+                    answer.querySelector("label").classList.remove("answer-block--error");
+                });
+            }
+        });
+
+        // Установка стилей для невалидных полей
+        if (!validate.isValid) {
+            validate.errorFields.forEach(function (errorField) {
+                if (errorField.errorPlace === "question") {
+                    self._questions[errorField.questionNumber]
+                        .querySelector(".question-block__question textarea")
+                        .classList
+                        .add("question-block--error");
+                }
+                if (errorField.errorPlace === "answer" && errorField.errorType.type === "empty") {
+                    var answers = self._questions[errorField.questionNumber].querySelectorAll(".answer-block__item");
+
+                    if (answers.length === 1 && answers[0].parentNode.classList.contains("answer-block--handle")) {
+                        answers[0].querySelector("textarea").classList.add("answer-block--error");
+                        return;
+                    }
+
+                    errorField.errorType.wrongFields.forEach(function (answerNumber) {
+                        answers[answerNumber].querySelector("input[type=text]").classList.add("answer-block--error");
+                    });
+                }
+                if (errorField.errorPlace === "answer" && errorField.errorType.type === "noRight") {
+                    var labels = self._questions[errorField.questionNumber]
+                                     .querySelectorAll(".answer-block__item label");
+
+                    Array.prototype.forEach.call(labels, function (label) {
+                        label.classList.add("answer-block--error");
+                    });
+                }
+            });
+            return;
+        }
+
+        // Отправка данных на сервер
+        var data = [];
+        var filesLoad = new Event("filesload");
+
+        Array.prototype.forEach.call(this._questions, function (question) {
+            /**
+             * @type {Object} questionData
+             * @type {string} questionData.question - вопрос
+             * @type {string} questionData.type - тип вопроса
+             * @type {string} questionData.answer - ответ для вопроса, который предполагает ручной ввод
+             * @type {Array} questionData.answers - массив с ответами для тестового вопроса
+             * @type {boolean} questionData.answers[].isRight - флаг, указывающий на правильность (true) или
+             *     неправильность (false) данного ответа
+             * @type {string} questionData.answers[].answer - ответ
+             */
+            var questionData = {};
+
+            questionData.question = question.querySelector(".question-block__question textarea").value;
+            questionData.type = question.querySelector(".question-block__answer-type select").value;
+
+            if (questionData.type === "test-answer") {
+                var answers = question.querySelectorAll(".answer-block__item");
+                questionData.answers = [];
+
+                Array.prototype.forEach.call(answers, function (answer) {
+                    questionData.answers.push({
+                        isRight: answer.querySelector("input[type=checkbox]").checked,
+                        answer:  answer.querySelector("input[type=text]").value
+                    });
+                });
+            }
+            if (questionData.type === "handle") {
+                questionData.answer = question.querySelector(".answer-block__item textarea").value;
+            }
+
+            var file = question.querySelector("input[type=file]").files[0];
+            var fileReader = new FileReader();
+
+            if (file) {
+                fileReader.addEventListener("load", function (event) {
+                    questionData.file = event.target.result;
+                    data.push(questionData);
+                    if (data.length === self._questions.length) {
+                        document.dispatchEvent(filesLoad);
+                    }
+                });
+                fileReader.readAsDataURL(file);
+            } else {
+                data.push(questionData);
+                if (data.length === self._questions.length) {
+                    document.dispatchEvent(filesLoad);
+                }
+            }
+        });
+
+        document.addEventListener("filesload", function (event) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/users/addtest");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.addEventListener("readystatechange", function (event) {
+                if (this.readyState === xhr.DONE) {
+                    console.log(xhr.responseText);
+                    // TODO доделать
+                }
+            });
+            xhr.send(JSON.stringify({
+                name: document.querySelector(".add-test-form__meta input[type=text]").value,
+                questionsCount: document.querySelector(".add-test-form__meta input[type=number]").value,
+                data: data
+            }));
+        });
     };
 
 
@@ -226,6 +353,7 @@
 
         var fileInput = document.createElement("input");
         fileInput.type = "file";
+        fileInput.setAttribute("accept", ".jpg, .jpeg, .png, .gif");
 
         var answerTypeBlock = document.createElement("div");
         answerTypeBlock.classList.add("question-block__answer-type");

@@ -63,6 +63,8 @@ body.no-scroll {
   width: 400px;
   margin-left: auto;
   margin-right: auto; }
+  .add-test-form input[type=text] {
+    padding: 5px 10px; }
   .add-test-form__buttons {
     padding: 0 40px;
     padding-top: 40px;
@@ -83,6 +85,17 @@ body.no-scroll {
     display: inline-block;
     width: 100%;
     content: ""; }
+  .add-test-form__meta {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .add-test-form__test-name label,
+  .add-test-form__test-name input {
+    display: block;
+    width: 100%; }
+  .add-test-form__question-count {
+    margin-top: 5px; }
+    .add-test-form__question-count input {
+      width: 52px; }
 
 .answer-block__item:not(:last-child) {
   margin-bottom: 5px; }
@@ -93,7 +106,7 @@ body.no-scroll {
 .answer-block__delete-answer {
   position: absolute;
   left: -30px;
-  top: 1px;
+  top: 6px;
   border: none;
   background: none;
   opacity: 0.3;
@@ -112,6 +125,9 @@ body.no-scroll {
 .answer-block input[type=text] {
   margin-left: 25px; }
 
+.answer-block input[type=text].answer-block--error {
+  border: 2px solid red; }
+
 .answer-block label {
   position: relative; }
   .answer-block label:hover {
@@ -119,17 +135,28 @@ body.no-scroll {
 
 .answer-block input + label::before {
   position: absolute;
-  top: 1px;
+  top: 2px;
   left: 1px;
   font: normal normal normal 16px/1 FontAwesome;
   content: "\f096"; }
 
+.answer-block input + label.answer-block--error::before {
+  position: absolute;
+  top: 2px;
+  left: 1px;
+  font: normal normal normal 16px/1 FontAwesome;
+  color: red;
+  content: "\f096"; }
+
 .answer-block input:checked + label::before {
   position: absolute;
-  top: 1px;
+  top: 2px;
   left: 1px;
   font: normal normal normal 16px/1 FontAwesome;
   content: "\f046"; }
+
+.answer-block textarea.answer-block--error {
+  border: 2px solid red; }
 
 .author {
   text-align: center;
@@ -536,6 +563,8 @@ body.no-scroll {
     height: 130px;
     resize: none;
     padding: 10px; }
+  .question-block textarea.question-block--error {
+    border: 2px solid red; }
   .question-block__attach-photo-button {
     padding-top: 20px;
     padding-bottom: 20px; }
