@@ -23,3 +23,12 @@ let Test = module.exports = mongoose.model("Test", TestSchema);
 module.exports.addTest = (newTest, callback) => {
     newTest.save(callback);
 };
+
+
+/**
+ * Получает все тесты из базы данных
+ * @param callback {Function} - функция обратного вызова
+ */
+module.exports.getAllTests = (callback) => {
+    Test.find(callback);
+};
