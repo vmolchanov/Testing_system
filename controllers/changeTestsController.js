@@ -28,12 +28,16 @@ module.exports = (req, res) => {
                     }
                 });
 
+                let newAvailableTests = [];
+
                 // Из массива с текущими доступными тестами для пользователя удаляются лишние
                 user.availableTests.forEach((availableTest, availableTestIndex) => {
-                    if (req.body.tests.findIndex(test => test === availableTest) === -1) {
-                        user.availableTests.splice(availableTestIndex, 1);
+                    if (req.body.tests.findIndex(test => test === availableTest.test) !== -1) {
+                        newAvailableTests.push(availableTest);
                     }
                 });
+
+                user.availableTests = newAvailableTests;
 
                 User.setNewAvailableTests(user, (err) => {
                     if (err) {

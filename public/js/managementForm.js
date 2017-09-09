@@ -25,9 +25,18 @@
                     self._saveProgress.innerHTML = response.reason;
                 }
                 if (response.status === "success") {
-                    for (var test in response.availableTests) {
-                        self._tests.find(item => item.getAttribute("name") === test).checked = true;
-                    }
+                    var checkboxes = self._testsContainer.querySelectorAll("input[type=checkbox]");
+
+                    Array.prototype.forEach.call(checkboxes, function (checkbox) {
+                        checkbox.checked = false;
+                        return checkbox;
+                    });
+
+                    response.availableTests.forEach(function(availableTest) {
+                        Array.prototype.find.call(checkboxes, function (checkbox) {
+                            return checkbox.getAttribute("name") === availableTest.test;
+                        }).checked = true;
+                    });
                 }
             }
         });
@@ -38,9 +47,9 @@
             location.href = location.origin + "/users/addtest";
         });
 
-        this._selectedUser.addEventListener("change", this._onUserChange);
-
         this._onUserChange = this._onUserChange.bind(this);
+
+        this._selectedUser.addEventListener("change", this._onUserChange);
     }
 
 
@@ -101,12 +110,22 @@
                     self._saveProgress.innerHTML = response.reason;
                 }
                 if (response.status === "success") {
+                    var checkboxes = self._testsContainer.querySelectorAll("input[type=checkbox]");
+
+                    Array.prototype.forEach.call(checkboxes, function (checkbox) {
+                        checkbox.checked = false;
+                        return checkbox;
+                    });
+
                     response.availableTests.forEach(function(availableTest) {
-                        self._tests.find(item => item.getAttribute("name") === test).checked = true;
+                        Array.prototype.find.call(checkboxes, function (checkbox) {
+                            return checkbox.getAttribute("name") === availableTest.test;
+                        }).checked = true;
                     });
                 }
             }
         });
+        xhr.send(null);
     };
 
     window.ManagementForm = ManagementForm;
