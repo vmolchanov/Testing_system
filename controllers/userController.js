@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Test = require("../models/test");
 
 
 module.exports = (req, res) => {
@@ -17,7 +18,10 @@ module.exports = (req, res) => {
         if (user.isAdmin) {
             User.getUsers((err, users) => {
                 context.users = users;
-                return res.render("admin", context);
+                Test.getAllTests((err, tests) => {
+                    context.tests = tests;
+                    return res.render("admin", context);
+                });
             });
         } else {
             return res.render("user", context);
