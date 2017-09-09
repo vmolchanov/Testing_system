@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Test = require("../models/test");
+const ObjectId = require("mongodb").ObjectId;
 
 
 module.exports = (req, res) => {
@@ -15,16 +16,27 @@ module.exports = (req, res) => {
             userPage: true,
             adminPage: user.isAdmin
         };
-        if (user.isAdmin) {
-            User.getUsers((err, users) => {
-                context.users = users;
-                Test.getAllTests((err, tests) => {
+        Test.getAllTests((err, tests) => {
+            if (err) {
+                throw err;
+            }
+
+            if (user.isAdmin) {
+                User.getUsers((err, users) => {
+                    if (err) {
+                        throw err;
+                    }
+                    context.users = users;
                     context.tests = tests;
                     return res.render("admin", context);
                 });
-            });
-        } else {
-            return res.render("user", context);
-        }
+            } else {
+                context.tests = user.availableTests.map(availableTest => {
+                    return tests.find(test => availableTest.test === String(test._id)).name;
+                });
+
+                return res.render("user", context);
+            }
+        });
     });
 };

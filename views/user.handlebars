@@ -2,41 +2,13 @@
     <div class="available-tests__wrap">
         <h2 class="available-tests__header">Доступные тесты</h2>
         <ul class="available-tests__list">
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Основы фотоники</a>
-                </div>
-            </li>
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Теория информации</a>
-                </div>
-            </li>
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Программирование</a>
-                </div>
-            </li>
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Оптическое материаловедение</a>
-                </div>
-            </li>
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Вычислительная математика</a>
-                </div>
-            </li>
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Компьютерное моделирование</a>
-                </div>
-            </li>
-            <li class="available-tests__test">
-                <div>
-                    <a href="#">Разработка программных средств для научного эксперимента</a>
-                </div>
-            </li>
+            {{#each tests}}
+                <li class="available-tests__test">
+                    <div>
+                        <a href="#">{{this}}</a>
+                    </div>
+                </li>
+            {{/each}}
         </ul>
     </div>
 </div>
