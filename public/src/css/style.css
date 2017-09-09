@@ -475,9 +475,18 @@ body.no-scroll {
 
 .management-form {
   position: relative;
-  width: 960px;
+  width: 920px;
   margin-left: auto;
   margin-right: auto; }
+  @media (max-width: 959px) {
+    .management-form {
+      width: 728px; } }
+  @media (max-width: 767px) {
+    .management-form {
+      width: 440px; } }
+  @media (max-width: 479px) {
+    .management-form {
+      width: 280px; } }
   .management-form__form-group {
     margin-left: auto;
     margin-right: auto; }
@@ -488,26 +497,49 @@ body.no-scroll {
   .management-form__users, .management-form__tests {
     padding: 50px;
     float: left; }
+    @media (max-width: 959px) {
+      .management-form__users, .management-form__tests {
+        float: none; } }
+    @media (max-width: 479px) {
+      .management-form__users, .management-form__tests {
+        padding-left: 10px;
+        padding-right: 10px; } }
+  @media (max-width: 959px) {
+    .management-form__users {
+      text-align: center; } }
   .management-form__tests {
     max-width: 600px; }
+    @media (max-width: 959px) {
+      .management-form__tests {
+        max-width: none; } }
   .management-form__test input {
     display: none; }
   .management-form__test label {
     position: relative;
     display: block;
     padding-left: 25px; }
+    @media (max-width: 959px) {
+      .management-form__test label {
+        padding-top: 1px;
+        padding-bottom: 1px; } }
   .management-form__test input + label::before {
     position: absolute;
     top: 1px;
     left: 1px;
     font: normal normal normal 16px/1 FontAwesome;
     content: "\f096"; }
+    @media (max-width: 959px) {
+      .management-form__test input + label::before {
+        font-size: 20px; } }
   .management-form__test input:checked + label::before {
     position: absolute;
     top: 1px;
     left: 1px;
     font: normal normal normal 16px/1 FontAwesome;
     content: "\f046"; }
+    @media (max-width: 959px) {
+      .management-form__test input:checked + label::before {
+        font-size: 20px; } }
   .management-form__test:not(:last-child) {
     margin-bottom: 5px; }
   .management-form__submit {
@@ -534,6 +566,9 @@ body.no-scroll {
     left: 50px;
     display: none;
     padding-left: 20px; }
+    @media (max-width: 959px) {
+      .management-form__save-progress {
+        left: 26px; } }
   .management-form__save-progress--success {
     display: block;
     color: forestgreen; }

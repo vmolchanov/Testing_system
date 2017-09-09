@@ -2,9 +2,21 @@
 
     position: relative;
 
-    width: 960px;
+    width: 920px;
     margin-left: auto;
     margin-right: auto;
+
+    @media (max-width: $media-768) {
+        width: 728px;
+    }
+
+    @media (max-width: $media-480) {
+        width: 440px;
+    }
+
+    @media (max-width: $media-320) {
+        width: 280px;
+    }
 
     &__form-group {
         margin-left: auto;
@@ -19,10 +31,29 @@
     &__tests {
         padding: 50px;
         float: left;
+
+        @media (max-width: $media-768) {
+            float: none;
+        }
+
+        @media (max-width: $media-320) {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+
+    &__users {
+        @media (max-width: $media-768) {
+            text-align: center;
+        }
     }
 
     &__tests {
         max-width: 600px;
+
+        @media (max-width: $media-768) {
+            max-width: none;
+        }
     }
 
     &__test {
@@ -35,6 +66,11 @@
 
             display: block;
             padding-left: 25px;
+
+            @media (max-width: $media-768) {
+                padding-top: 1px;
+                padding-bottom: 1px;
+            }
         }
 
         // Кастомный не выбранный checkbox
@@ -46,6 +82,10 @@
             font: normal normal normal 16px/1 FontAwesome;
 
             content: "\f096";
+
+            @media (max-width: $media-768) {
+                font-size: 20px;
+            }
         }
 
         // Кастомный выбранный checkbox
@@ -57,6 +97,10 @@
             font: normal normal normal 16px/1 FontAwesome;
 
             content: "\f046";
+
+            @media (max-width: $media-768) {
+                font-size: 20px;
+            }
         }
     }
 
@@ -100,6 +144,10 @@
 
         display: none;
         padding-left: 20px;
+
+        @media (max-width: $media-768) {
+            left: 26px;
+        }
     }
 
     &__save-progress--success {
