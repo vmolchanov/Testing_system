@@ -29,6 +29,240 @@
 
 
     /**
+     * Метод используется для валидации формы. Валидация происходит по трем критериям:
+     *   1) Проверка на пустоту поля с вопросом;
+     *   2) Проверка на пустоту поля с ответом (или нескольких полей для тестовых вопросов);
+     *   3) Для тестовых вопросов проверяется наличие хотя бы одного ответа, отмеченного как правильный
+     * @returns {{isValid: boolean, errorFields: Array}} - объект с признаком результата валидации (isValid)
+     *     и массивом названий полей, которые не прошли валидацию (errorFields)
+     */
+    AddTestForm.prototype.validate = function () {
+        var isValid = true;
+        /**
+         * @type {Array} errorFields
+         * @type {number} errorFields[].questionNumber - номер вопроса, в котором валидация не пройдена
+         * @type {string} errorFields[].errorPlace - место, где валидация не пройдена. Принимает значение question если
+         *     валидация не прошла на проверке вопроса и принимает значение answer если валидация не прошла на
+         *     проверке ответа
+         * @type {Object} errorFields[].errorType - дополнительное поле, которое присутствует только если
+         *     errorPlace === "answer"
+         * @type {string} errorFields[].errorType.type - тип ошибки ответа. Принимает значение empty если найдено
+         *     незаполненное поле ответа и принимает значение noRight если в тестовом вопросе не отмечено ни одного
+         *     правильного ответа
+         * @type {Array} errorFields[].errorType.wrongFields - массив номеров ответов, которые не прошли валидацию.
+         *     Присутствует только если type === "empty"
+         */
+        var errorFields = [];
+
+        this._questions.forEach(function (question) {
+            var questionValue = question.querySelector(".question-block__question textarea").value;
+
+            if (questionValue === "") {
+                isValid = false;
+                errorFields.push({
+                    questionNumber: Number(question.getAttribute("data-question")),
+                    errorPlace: "question"
+                });
+                return;
+            }
+
+            var questionType = question.querySelector(".question-block__answer-type select").value;
+
+            if (questionType === "test-answer") {
+                var answers = question.querySelectorAll(".answer-block__item input[type=text]");
+                var answersValues = Array.prototype.map.call(answers, function (answer) {
+                    return answer.value;
+                });
+                var wrongAnswers = [];
+
+                answersValues.forEach(function (answerValue, answerValueIndex) {
+                    if (answerValue === "") {
+                        isValid = false;
+                        wrongAnswers.push(Number(answers[answerValueIndex].parentNode.getAttribute("data-answer")));
+                    }
+                });
+
+                if (wrongAnswers.length !== 0) {
+                    errorFields.push({
+                        questionNumber: Number(question.getAttribute("data-question")),
+                        errorPlace: "answer",
+                        errorType: {
+                            type: "empty",
+                            wrongFields: wrongAnswers
+                        }
+                    });
+                    return;
+                }
+
+                var checkboxes = question.querySelectorAll(".answer-block__item input[type=checkbox]");
+
+                var haveRightAnswer = Array.prototype.some.call(checkboxes, function (checkbox) {
+                    return checkbox.checked;
+                });
+
+                if (!haveRightAnswer) {
+                    isValid = false;
+                    errorFields.push({
+                        questionNumber: Number(question.getAttribute("data-question")),
+                        errorPlace: "answer",
+                        errorType: {
+                            type: "noRight"
+                        }
+                    });
+                    return;
+                }
+            }
+            if (questionType === "handle") {
+                var answer = question.querySelector(".answer-block__item textarea").value;
+
+                if (answer === "") {
+                    isValid = false;
+                    errorFields.push({
+                        questionNumber: Number(question.getAttribute("data-question")),
+                        errorPlace: "answer",
+                        errorType: {
+                            type: "empty"
+                        }
+                    });
+                }
+            }
+        });
+
+        return { isValid: isValid, errorFields: errorFields };
+    };
+
+
+    /**
+     * Метод выполняет валидацию полей и отправку ajax-запроса, если валидация пройдена
+     */
+    AddTestForm.prototype.submit = function () {
+        var validate = this.validate();
+        var self = this;
+
+        // Сброс стилей для ошибки
+        Array.prototype.forEach.call(this._questions, function (question) {
+            question.querySelector(".question-block__question textarea").classList.remove("question-block--error");
+            if (question.querySelector(".answer-block").classList.contains("answer-block--handle")) {
+                question.querySelector(".answer-block__item textarea").classList.remove("answer-block--error");
+            } else {
+                Array.prototype.forEach.call(question.querySelectorAll(".answer-block__item"), function (answer) {
+                    answer.querySelector("input[type=text]").classList.remove("answer-block--error");
+                    answer.querySelector("label").classList.remove("answer-block--error");
+                });
+            }
+        });
+
+        // Установка стилей для невалидных полей
+        if (!validate.isValid) {
+            validate.errorFields.forEach(function (errorField) {
+                if (errorField.errorPlace === "question") {
+                    self._questions[errorField.questionNumber]
+                        .querySelector(".question-block__question textarea")
+                        .classList
+                        .add("question-block--error");
+                }
+                if (errorField.errorPlace === "answer" && errorField.errorType.type === "empty") {
+                    var answers = self._questions[errorField.questionNumber].querySelectorAll(".answer-block__item");
+
+                    if (answers.length === 1 && answers[0].parentNode.classList.contains("answer-block--handle")) {
+                        answers[0].querySelector("textarea").classList.add("answer-block--error");
+                        return;
+                    }
+
+                    errorField.errorType.wrongFields.forEach(function (answerNumber) {
+                        answers[answerNumber].querySelector("input[type=text]").classList.add("answer-block--error");
+                    });
+                }
+                if (errorField.errorPlace === "answer" && errorField.errorType.type === "noRight") {
+                    var labels = self._questions[errorField.questionNumber]
+                        .querySelectorAll(".answer-block__item label");
+
+                    Array.prototype.forEach.call(labels, function (label) {
+                        label.classList.add("answer-block--error");
+                    });
+                }
+            });
+            return;
+        }
+
+        // Отправка данных на сервер
+        var data = [];
+        var filesLoad = new Event("filesload");
+
+        Array.prototype.forEach.call(this._questions, function (question) {
+            /**
+             * @type {Object} questionData
+             * @type {string} questionData.question - вопрос
+             * @type {string} questionData.type - тип вопроса
+             * @type {string} questionData.answer - ответ для вопроса, который предполагает ручной ввод
+             * @type {Array} questionData.answers - массив с ответами для тестового вопроса
+             * @type {boolean} questionData.answers[].isRight - флаг, указывающий на правильность (true) или
+             *     неправильность (false) данного ответа
+             * @type {string} questionData.answers[].answer - ответ
+             */
+            var questionData = {};
+
+            questionData.question = question.querySelector(".question-block__question textarea").value;
+            questionData.type = question.querySelector(".question-block__answer-type select").value;
+
+            if (questionData.type === "test-answer") {
+                var answers = question.querySelectorAll(".answer-block__item");
+                questionData.answers = [];
+
+                Array.prototype.forEach.call(answers, function (answer) {
+                    questionData.answers.push({
+                        isRight: answer.querySelector("input[type=checkbox]").checked,
+                        answer:  answer.querySelector("input[type=text]").value
+                    });
+                });
+            }
+            if (questionData.type === "handle") {
+                questionData.answer = question.querySelector(".answer-block__item textarea").value;
+            }
+
+            var file = question.querySelector("input[type=file]").files[0];
+            var fileReader = new FileReader();
+
+            if (file) {
+                fileReader.addEventListener("load", function (event) {
+                    questionData.file = event.target.result;
+                    data.push(questionData);
+                    if (data.length === self._questions.length) {
+                        document.dispatchEvent(filesLoad);
+                    }
+                });
+                fileReader.readAsDataURL(file);
+            } else {
+                data.push(questionData);
+                if (data.length === self._questions.length) {
+                    document.dispatchEvent(filesLoad);
+                }
+            }
+        });
+
+        document.addEventListener("filesload", function (event) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/users/addtest");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.addEventListener("readystatechange", function (event) {
+                if (this.readyState === xhr.DONE) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.status === "success") {
+                        location.href = location.origin + response.redirect;
+                    }
+                }
+            });
+            xhr.send(JSON.stringify({
+                name: document.querySelector(".add-test-form__meta input[type=text]").value,
+                questionsCount: document.querySelector(".add-test-form__meta input[type=number]").value,
+                data: data
+            }));
+        });
+    };
+
+
+    /**
      * Метод создает DOM элемент с тестовым ответом
      * @param {number} answerNumber - индекс ответа в вопросе
      * @returns {Element} - DOM элемент с ответом
@@ -122,6 +356,7 @@
 
         var fileInput = document.createElement("input");
         fileInput.type = "file";
+        fileInput.setAttribute("accept", ".jpg, .jpeg, .png, .gif");
 
         var answerTypeBlock = document.createElement("div");
         answerTypeBlock.classList.add("question-block__answer-type");
@@ -258,7 +493,7 @@
             question.setAttribute("data-question", String(questionIndex));
             question.querySelector("h2").textContent = "Вопрос " + String(questionIndex + 1);
             question.querySelector(".question-block__delete-question")
-                    .setAttribute("data-question", String(questionIndex));
+                .setAttribute("data-question", String(questionIndex));
         });
     };
 
