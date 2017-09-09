@@ -40,6 +40,7 @@ module.exports = (req, res) => {
                         throw err;
                     }
                     console.log(`Tests for ${user.email} was change successful`);
+                    res.json({ status: "success" });
                 });
             });
         });
