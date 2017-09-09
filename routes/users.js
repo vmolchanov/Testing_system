@@ -11,6 +11,8 @@ const userController = require("../controllers/userController");
 const logoutController = require("../controllers/logoutController");
 const loginController = require("../controllers/loginController");
 const addTestController = require("../controllers/addTestController");
+const availableTestsController = require("../controllers/availableTestsController");
+const changeTestsController = require("../controllers/changeTestsController");
 const User = require("../models/user");
 
 
@@ -75,9 +77,13 @@ router.all("/id:userId", (req, res, next) => {
 
 router.get("/id:userId", userController);
 
+router.get("/availabletests", availableTestsController);
+
 router.get("/addtest", addTestController);
 
 router.post("/addtest", addTestController);
+
+router.put("/changetests", changeTestsController);
 
 router.get("/logout", logoutController);
 
