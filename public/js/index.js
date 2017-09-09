@@ -64,6 +64,10 @@
 
     if (managementFormElement) {
         var managementForm = new ManagementForm();
+        managementFormElement.addEventListener("submit", function (event) {
+            event.preventDefault();
+            managementForm.submit();
+        });
     }
 
     if (addTestFormElement) {
