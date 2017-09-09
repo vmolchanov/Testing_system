@@ -13,7 +13,7 @@ let UserSchema = mongoose.Schema({
         type: String
     },
     availableTests: [{
-        filename: String,
+        test: String,
         solutions: [{
             date: Date,
             progress: Number
@@ -94,8 +94,19 @@ module.exports.setNewPassword = (user, callback) => {
 
 /**
  * Получает всех пользователей из базы данных
- * @param callback {Function} - функция обратного вызова
+ * @param {Function} callback - функция обратного вызова
  */
 module.exports.getUsers = callback => {
     User.find(callback);
+};
+
+
+/**
+ * Обновляет данные о доступных для пользователя тестах в базе данных
+ * @param {Object} user - обновленные данные о пользователе
+ * @param {Function} callback - функция обратного вызова
+ */
+module.exports.setNewAvailableTests = (user, callback) => {
+    let query = { email: user.email };
+    User.update(query, { availableTests: user.availableTests }, callback);
 };
