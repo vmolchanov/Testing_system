@@ -1,6 +1,6 @@
 <div class="management">
     <div class="management__wrap">
-        <form action="#" id="management-form" class="management-form" method="GET">
+        <form action="#" id="management-form" class="management-form" method="PUT">
             <div id="save-progress" class="management-form__save-progress"></div>
             <div class="management-form__form-group">
                 <div class="management-form__users">
@@ -17,31 +17,13 @@
                     </div>
                 </div>
 
-                <div class="management-form__tests">
-                    <div class="management-form__test">
-                        <input type="checkbox" id="test1" name="high-level-programming">
-                        <label for="test1">Программирование на языке высокого уровня</label>
-                    </div>
-                    <div class="management-form__test">
-                        <input type="checkbox" id="test2" name="parallel">
-                        <label for="test2">Параллельное программирование</label>
-                    </div>
-                    <div class="management-form__test">
-                        <input type="checkbox" id="test3" name="science-dev">
-                        <label for="test3">Разработка программных средств для научного эксперимента</label>
-                    </div>
-                    <div class="management-form__test">
-                        <input type="checkbox" id="test4" name="machine-learning">
-                        <label for="test4">Технологии исскуственного интелекта</label>
-                    </div>
-                    <div class="management-form__test">
-                        <input type="checkbox" id="test5" name="algorighms">
-                        <label for="test5">Теория алгоритмов</label>
-                    </div>
-                    <div class="management-form__test">
-                        <input type="checkbox" id="test6" name="img-analysis">
-                        <label for="test6">Методы анализа и распознавания изображений</label>
-                    </div>
+                <div id="tests" class="management-form__tests">
+                    {{#each tests}}
+                        <div class="management-form__test">
+                            <input id="{{this._id}}" type="checkbox" name="{{this._id}}">
+                            <label for="{{this._id}}">{{this.name}}</label>
+                        </div>
+                    {{/each}}
                 </div>
             </div>
         </form>
