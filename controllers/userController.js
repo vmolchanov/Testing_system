@@ -32,7 +32,10 @@ module.exports = (req, res) => {
                 });
             } else {
                 context.tests = user.availableTests.map(availableTest => {
-                    return tests.find(test => availableTest.test === String(test._id)).name;
+                    return {
+                        name: tests.find(test => availableTest.test === String(test._id)).name,
+                        id: String(tests.find(test => availableTest.test === String(test._id))._id)
+                    };
                 });
 
                 return res.render("user", context);
