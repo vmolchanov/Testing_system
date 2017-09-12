@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestUp – Архитектура вычислительных систем</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-header__wrap">
+            <div class="main-header__content">
+                <div class="main-header__logo">
+                    <div class="logo-block">
+                        <img src="img/logo.svg" alt="logo">
+                    </div>
+                </div>
+                <div class="main-header__menu">
+                    <nav class="main-menu">
+                        <ul class="main-menu__list">
+                            <li class="main-menu__item">
+                                <a href="">Рейтинг</a>
+                            </li>
+                            <li class="main-menu__item">
+                                <a href="">Учебные пособия</a>
+                            </li>
+                            <li class="main-menu__item">
+                                <a href="">О системе</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="main-header__user">
+                    <div class="user-block">
+                        <a class="user-block__signin-btn user-block__signin-btn--login-page" href="/users/login">Войти</a>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <img src="img/hamburger.svg" alt="menu">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="testing-container">
+        <div class="testing-container__wrap">
+            <form action="/test/id/finish" id="testing-form" class="testing-form" method="POST">
+                <div class="testing-form__image">
+                    <img src="img/rs-trigger.gif" alt="pic">
+                </div>
+
+                <div class="testing-form__question" data-question="0">
+                    <p>Что изображено на картинке?</p>
+                </div>
+
+                <div class="testing-form__answer testing-form__answer--hide">
+                    <label for="answer">Ответ:</label>
+                    <textarea name="answer" id="answer" cols="30" rows="10" placeholder="Введите ответ..."></textarea>
+                </div>
+
+                <div class="testing-form__answers">
+                    <div class="testing-form__answer-item">
+                        <input type="checkbox" id="answer1">
+                        <label for="answer1">JK-триггер</label>
+                    </div>
+                    <div class="testing-form__answer-item">
+                        <input type="checkbox" id="answer2">
+                        <label for="answer2">RS-триггер</label>
+                    </div>
+                    <div class="testing-form__answer-item">
+                        <input type="checkbox" id="answer3">
+                        <label for="answer3">D-триггер</label>
+                    </div>
+                    <div class="testing-form__answer-item">
+                        <input type="checkbox" id="answer4">
+                        <label for="answer4">T-триггер</label>
+                    </div>
+                </div>
+
+                <div class="testing-form__buttons">
+                    <button class="testing-form__next-button" type="button">Следующий вопрос</button>
+                    <button class="testing-form__submit-button testing-form__submit-button--hide" type="submit">Завершить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="main-footer__wrap">
+            <div class="author">Разработчик:</div>
+            <div class="social">
+                <div class="social__item">
+                    <a href="mailto:Molchanov96@yandex.ru" target="_blank" title="Написать на почту">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://t.me/vmolchanov" target="_blank" title="Telegram">
+                        <i class="fa fa-telegram" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://vk.com/id6818519" target="_blank" title="Вконтакте">
+                        <i class="fa fa-vk" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://github.com/vmolchanov" target="_blank" title="Github">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="social__item">
+                    <a href="https://codepen.io/vmolchanov/" target="_blank" title="Codepen">
+                        <i class="fa fa-codepen" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/loginForm.js"></script>
+    <script src="js/signInPopup.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
