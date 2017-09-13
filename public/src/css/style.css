@@ -980,6 +980,7 @@ body.no-scroll {
   .testing-form__question {
     margin-top: 50px; }
     .testing-form__question p {
+      font-weight: bold;
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
@@ -1006,6 +1007,7 @@ body.no-scroll {
       display: none; }
   .testing-form__answer-item label {
     position: relative;
+    display: block;
     padding-left: 25px;
     -webkit-user-select: none;
        -moz-user-select: none;
