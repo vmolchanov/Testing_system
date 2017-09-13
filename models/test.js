@@ -1,5 +1,6 @@
 const config = require("../config/config");
 const mongoose = require("mongoose");
+const ObjectId = require("mongodb").ObjectId;
 
 
 const TestSchema = mongoose.Schema({
@@ -29,6 +30,11 @@ module.exports.addTest = (newTest, callback) => {
  * Получает все тесты из базы данных
  * @param callback {Function} - функция обратного вызова
  */
-module.exports.getAllTests = (callback) => {
+module.exports.getAllTests = callback => {
     Test.find(callback);
+};
+
+
+module.exports.getTestById = (id, callback) => {
+    Test.findOne(ObjectId(id), callback);
 };
