@@ -1045,6 +1045,16 @@ body.no-scroll {
   width: 600px;
   margin-left: auto;
   margin-right: auto; }
+  @media (max-width: 959px) {
+    .testing-form {
+      width: 440px;
+      margin-left: auto;
+      margin-right: auto; } }
+  @media (max-width: 767px) {
+    .testing-form {
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto; } }
   .testing-form__image {
     max-width: 400px;
     max-height: 300px;
@@ -1109,6 +1119,9 @@ body.no-scroll {
     padding-top: 50px;
     font-size: 0;
     text-align: right; }
+    @media (max-width: 959px) {
+      .testing-form__buttons {
+        text-align: center; } }
   .testing-form__next-button, .testing-form__submit-button {
     display: inline-block;
     width: 200px;

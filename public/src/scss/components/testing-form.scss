@@ -2,6 +2,14 @@
 
     @include container(600px);
 
+    @media (max-width: $media-768) {
+        @include container(440px);
+    }
+
+    @media (max-width: $media-480) {
+        @include container(280px);
+    }
+
     &__image {
         max-width: 400px;
         max-height: 300px;
@@ -104,6 +112,10 @@
 
         font-size: 0;
         text-align: right;
+
+        @media (max-width: $media-768) {
+            text-align: center;
+        }
     }
 
     &__next-button,
