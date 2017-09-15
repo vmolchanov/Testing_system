@@ -1,0 +1,38 @@
+<div class="testing-container">
+    <div class="testing-container__wrap">
+        <form action="/test/{{testId}}" id="testing-form" class="testing-form" method="GET">
+            {{#if file}}
+                <div class="testing-form__image">
+                    <img src="{{file}}" alt="pic">
+                </div>
+            {{/if}}
+
+            <!-- TODO изменить margin-top для вопроса на padding-bottom для изображения -->
+            <div class="testing-form__question" data-question="0">
+                <p>{{question}}</p>
+            </div>
+
+            {{#if handleType}}
+                <div class="testing-form__answer testing-form__answer--hide">
+                    <label for="answer">Ответ:</label>
+                    <textarea name="answer" id="answer" cols="30" rows="10" placeholder="Введите ответ..."></textarea>
+                </div>
+            {{/if}}
+
+            {{#if testType}}
+                <div class="testing-form__answers">
+                    {{#each answers}}
+                        <div class="testing-form__answer-item">
+                            <input type="checkbox" id="answer{{@index}}" name="answer{{@index}}">
+                            <label for="answer{{@index}}">{{this.answer}}</label>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            <div class="testing-form__buttons">
+                <button id="next-button" class="testing-form__next-button" type="submit">Следующий вопрос</button>
+            </div>
+        </form>
+    </div>
+</div>
