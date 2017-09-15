@@ -52,7 +52,15 @@ module.exports = (req, res) => {
 
                 let progress = Math.round((correctAnswer * 100) / test.questionsCount);
 
-                return res.send(String(progress));
+                return res.render("test-result", {
+                    title: progress >= 60 ? "Успех" : "Неудача",
+                    userPage: true,
+                    success: progress >= 60,
+                    progress: progress,
+                    correctAnswers: correctAnswer,
+                    questionsCount: test.questionsCount,
+                    testId: String(test._id)
+                });
             }
         }
 
