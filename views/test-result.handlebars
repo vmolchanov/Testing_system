@@ -1,0 +1,21 @@
+<div class="test-result">
+    <div class="test-result__wrap">
+        {{#if success}}
+            <b>Тест пройден успешно</b>
+        {{else}}
+            <b>Неудача</b>
+        {{/if}}
+        {{#if success}}
+            <span>Твой результат: <span class="test-result__progress test-result__progress--success">{{progress}}%</span></span>
+        {{else}}
+            <span>Твой результат: <span class="test-result__progress test-result__progress--fail">{{progress}}%</span></span>
+        {{/if}}
+        <span>Правильных ответов: {{correctAnswers}}/{{questionsCount}}</span>
+        <div class="test-result__buttons">
+            {{#unless success}}
+                <a href="/test/{{testId}}">Повторить</a>
+            {{/unless}}
+            <a href="/">На главную</a>
+        </div>
+    </div>
+</div>
