@@ -976,15 +976,14 @@ body.no-scroll {
     max-height: 300px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 50px;
     text-align: center; }
-  .testing-form__question {
-    margin-top: 50px; }
-    .testing-form__question p {
-      font-weight: bold;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none; }
+  .testing-form__question p {
+    font-weight: bold;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
   .testing-form__answer {
     display: block;
     margin-top: 40px; }
