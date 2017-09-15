@@ -15,6 +15,7 @@ const flash = require('connect-flash');
 
 const routes = require("./routes/index");
 const users = require("./routes/users");
+const test = require("./routes/test");
 
 // Инициализация приложения
 const app = express();
@@ -27,7 +28,7 @@ app.set("view engine", "handlebars");
 // Инициализация Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser("secret"));
 
 // Указание директории со статическими файлами
 app.use(express.static(path.join(__dirname, "public")));
@@ -49,6 +50,7 @@ app.use(flash());
 // Подключение роутов
 app.use("/", routes);
 app.use("/users", users);
+app.use("/test", test);
 
 // Указание порта
 app.set("port", process.env.PORT || config.port);
