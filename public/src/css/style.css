@@ -30,6 +30,18 @@ body {
 body.no-scroll {
   overflow-y: hidden; }
 
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 .add-test {
   padding-top: 50px;
   padding-bottom: 50px; }
@@ -816,7 +828,11 @@ body.no-scroll {
     .signin-popup__close:hover {
       cursor: pointer; }
   .signin-popup--show {
-    display: block; }
+    display: block;
+    -webkit-animation-name: fade-in;
+            animation-name: fade-in;
+    -webkit-animation-duration: 0.6s;
+            animation-duration: 0.6s; }
 
 .signin-popup-form__email input {
   width: 100%;
