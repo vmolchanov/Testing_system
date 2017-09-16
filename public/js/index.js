@@ -12,6 +12,7 @@
     var timerElement = document.getElementById("timer");
     var managementFormElement = document.getElementById("management-form");
     var addTestFormElement = document.getElementById("add-test-form");
+    var testingFormElement = document.getElementById("testing-form");
 
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
@@ -75,6 +76,14 @@
         addTestFormElement.addEventListener("submit", function (event) {
             event.preventDefault();
             addTestForm.submit();
+        });
+    }
+
+    if (testingFormElement) {
+        var testingForm = new TestingForm();
+        testingFormElement.addEventListener("submit", function (event) {
+            event.preventDefault();
+            testingForm.submit();
         });
     }
 

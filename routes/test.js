@@ -8,4 +8,6 @@ router.use(express.static(path.join(__dirname, "../public")));
 
 router.get("/:testId", testController);
 
+router.post("/:testId", testController);
+
 module.exports = router;

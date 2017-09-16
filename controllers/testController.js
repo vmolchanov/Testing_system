@@ -13,6 +13,8 @@ module.exports = (req, res) => {
             return res.status(400).json({ status: "error", reason: "Тест не найден" });
         }
 
+        console.log(req.body);
+
         let testId = req.cookies.testId ? req.cookies.testId : String(test._id);
         let questionIndexes = req.cookies.questionIndexes
             ? JSON.parse(req.cookies.questionIndexes)
@@ -20,7 +22,7 @@ module.exports = (req, res) => {
         let currentIndex = req.cookies.currentIndex ? Number(req.cookies.currentIndex) : 0;
         let correctAnswer = req.cookies.correctAnswer ? Number(req.cookies.correctAnswer) : 0;
 
-        if (req.cookies.testId) {
+        if (req.cookies.testId && req.method === "POST") {
             if (test.data[questionIndexes[currentIndex]].type === "handle") {
                 if (req.params.answer.toLowerCase() === test.data[questionIndexes[currentIndex]].answer.toLowerCase()) {
                     correctAnswer++;
@@ -32,7 +34,7 @@ module.exports = (req, res) => {
                 for (let i = 0; i < test.data[questionIndexes[currentIndex]].answers.length; i++) {
                     let isRight = test.data[questionIndexes[currentIndex]].answers[i].isRight;
 
-                    if (isRight && !req.query["answer" + String(i)] || !isRight && req.query["answer" + String(i)]) {
+                    if (isRight && !req.body["answer" + String(i)] || !isRight && req.body["answer" + String(i)]) {
                         isCorrectAnswer = false;
                     }
                 }
@@ -79,6 +81,8 @@ module.exports = (req, res) => {
             handleType: test.data[questionIndexes[currentIndex]].type === "handle",
             testType: test.data[questionIndexes[currentIndex]].type === "test-answer",
             answers: test.data[questionIndexes[currentIndex]].answers
+        }, (err, html) => {
+            res.send(html);
         });
     });
 };
