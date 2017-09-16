@@ -31,6 +31,7 @@
      */
     SignInPopup.prototype.open = function () {
         this._popup.classList.add("signin-popup--show");
+        this._popup.style.opacity = "1";
         document.body.classList.add("no-scroll");
     };
 
@@ -43,8 +44,24 @@
         if (event) {
             event.preventDefault();
         }
-        this._popup.classList.remove("signin-popup--show");
-        document.body.classList.remove("no-scroll");
+
+        var ANIMATION_TIME = 200; // 0.3 секунды
+
+        var time = 0;
+        var self = this;
+        var interval = setInterval(function () {
+            var opacity = parseFloat(self._popup.style.opacity);
+
+            opacity -= 0.1;
+            self._popup.style.opacity = String(opacity);
+            time += ANIMATION_TIME / 10;
+
+            if (time === ANIMATION_TIME) {
+                clearInterval(interval);
+                self._popup.classList.remove("signin-popup--show");
+                document.body.classList.remove("no-scroll");
+            }
+        }, ANIMATION_TIME / 10);
     };
 
 

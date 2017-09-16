@@ -175,7 +175,7 @@
                 }
                 if (errorField.errorPlace === "answer" && errorField.errorType.type === "noRight") {
                     var labels = self._questions[errorField.questionNumber]
-                                     .querySelectorAll(".answer-block__item label");
+                        .querySelectorAll(".answer-block__item label");
 
                     Array.prototype.forEach.call(labels, function (label) {
                         label.classList.add("answer-block--error");
@@ -493,7 +493,7 @@
             question.setAttribute("data-question", String(questionIndex));
             question.querySelector("h2").textContent = "Вопрос " + String(questionIndex + 1);
             question.querySelector(".question-block__delete-question")
-                    .setAttribute("data-question", String(questionIndex));
+                .setAttribute("data-question", String(questionIndex));
         });
     };
 
