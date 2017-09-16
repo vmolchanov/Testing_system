@@ -13,16 +13,18 @@ module.exports = (req, res) => {
             return res.status(400).json({ status: "error", reason: "Тест не найден" });
         }
 
-        console.log(req.body);
-
-        let testId = req.cookies.testId ? req.cookies.testId : String(test._id);
-        let questionIndexes = req.cookies.questionIndexes
+        let testId = req.cookies.testId === req.params.testId ? req.cookies.testId : String(test._id);
+        let questionIndexes = req.cookies.testId === req.params.testId && req.cookies.questionIndexes
             ? JSON.parse(req.cookies.questionIndexes)
             : getIndexesFromShuffleArray(test.data, test.questionsCount);
-        let currentIndex = req.cookies.currentIndex ? Number(req.cookies.currentIndex) : 0;
-        let correctAnswer = req.cookies.correctAnswer ? Number(req.cookies.correctAnswer) : 0;
+        let currentIndex = req.cookies.testId === req.params.testId && req.cookies.currentIndex
+            ? Number(req.cookies.currentIndex)
+            : 0;
+        let correctAnswer = req.cookies.testId === req.params.testId && req.cookies.correctAnswer
+            ? Number(req.cookies.correctAnswer)
+            : 0;
 
-        if (req.cookies.testId && req.method === "POST") {
+        if (req.cookies.testId === req.params.testId && req.method === "POST") {
             if (test.data[questionIndexes[currentIndex]].type === "handle") {
                 if (req.params.answer.toLowerCase() === test.data[questionIndexes[currentIndex]].answer.toLowerCase()) {
                     correctAnswer++;
